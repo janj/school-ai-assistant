@@ -33,6 +33,7 @@
     <button role="tab" data-tab="data" aria-selected="true">Data</button>
     <button role="tab" data-tab="history" aria-selected="false">History</button>
     <button role="tab" data-tab="logs" aria-selected="false">Logs</button>
+    <button role="tab" data-tab="issues" aria-selected="false">Data issues</button>
   </nav>
   <main id="tab-panel"><p class="muted">Loading…</p></main>
 
@@ -56,6 +57,7 @@
       data: () => import("/static/admin/data.js").then(m => m.mountData),
       history: () => import("/static/admin/data.js").then(m => m.mountHistory),
       logs: () => import("/static/admin/logs.js").then(m => m.mount),
+      issues: () => import("/static/admin/issues.js").then(m => m.mount),
     };
     async function show(tab) {
       document.querySelectorAll("nav button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === tab));
