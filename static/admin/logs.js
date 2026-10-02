@@ -8,10 +8,90 @@ function el(tag, cls, text) {
   return n;
 }
 
-async function getJSON(url) {
-  const res = await fetch(url);
+async function getJSON(url, body) {
+  const res = await fetch(url, body === undefined ? {} : {
+    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
   if (!res.ok) throw new Error((await res.json().catch(() => ({}))).detail || res.statusText);
   return res.json();
+}
+
+// Placeholder picker (insert at the cursor) + a preview resolved by the server.
+function placeholderTools(textarea) {
+  const picker = el("select");
+  picker.setAttribute("aria-label", "Insert placeholder");
+  picker.append(new Option("Insert placeholder…", ""));
+  getJSON("/api/admin/placeholders").then(items => {
+    const groups = {};
+    for (const it of items) (groups[it.group] ||= []).push(it);
+    for (const [group, list] of Object.entries(groups)) {
+      const g = el("optgroup");
+      g.label = group;
+      list.forEach(it => g.append(new Option(`${it.token}  →  ${it.value || "(empty)"}`, it.token)));
+      picker.append(g);
+    }
+  }).catch(() => picker.append(new Option("Couldn't load placeholders", "")));
+  picker.onchange = () => {
+    if (!picker.value) return;
+    textarea.setRangeText(picker.value, textarea.selectionStart, textarea.selectionEnd, "end");
+    textarea.focus();
+    picker.value = "";
+  };
+
+  const prev = el("button", "ghost", "Preview");
+  prev.type = "button";
+  const out = el("div", "preview");
+  out.hidden = true;
+  prev.onclick = async () => {
+    out.hidden = false;
+    out.textContent = "Loading preview…";
+    try {
+      const { rendered, invalid } = await getJSON("/api/admin/preview", { text: textarea.value });
+      out.textContent = rendered;
+      if (invalid.length) out.append(el("div", "error", `Unknown placeholder(s): ${invalid.join(", ")}. Saving will fail until they're fixed.`));
+    } catch (e) { out.textContent = e.message; }
+  };
+  const bar = el("div", "tools");
+  bar.append(picker, prev);
+  const box = el("div");
+  box.append(bar, out);
+  return box;
+}
+
+function answerForm(r, onSaved, onCancel) {
+  const form = el("form", "faq-form");
+  const qLabel = el("label", null, "Question (as a parent would ask it)");
+  const q = el("input");
+  q.type = "text";
+  q.value = r.question;
+  q.maxLength = 500;
+  q.required = true;
+  qLabel.append(q);
+  const aLabel = el("label", null, "Answer");
+  aLabel.append(el("small", null, "Insert placeholders for fees, contacts and times; don't type values that live in another table."));
+  const a = el("textarea");
+  a.rows = 5;
+  a.required = true;
+  aLabel.append(a, placeholderTools(a));
+  const err = el("div", "error");
+  err.setAttribute("role", "alert");
+  const save = el("button", "primary", "Save to FAQ");
+  save.type = "submit";
+  const cancel = el("button", "ghost", "Cancel");
+  cancel.type = "button";
+  const actions = el("div", "actions");
+  actions.append(save, cancel);
+  form.append(qLabel, aLabel, err, actions);
+  cancel.onclick = () => { form.remove(); onCancel(); };
+  form.onsubmit = async ev => {
+    ev.preventDefault();
+    err.textContent = "";
+    save.disabled = true;
+    try {
+      const faq = await getJSON(`/api/admin/logs/${r.id}/answer`, { question: q.value, answer: a.value });
+      onSaved(faq);
+    } catch (e) { err.textContent = e.message; save.disabled = false; }
+  };
+  return form;
 }
 
 function when(ts) {
@@ -20,11 +100,12 @@ function when(ts) {
   return isNaN(d) ? ts : d.toLocaleString([], { dateStyle: "medium", timeStyle: "short" });
 }
 
-function card(r) {
+function card(r, onChange) {
   const c = el("article", "card");
   const meta = el("div", "meta");
   meta.append(el("span", null, when(r.created_at)), el("span", null, r.role || ""));
   if (!r.found) meta.append(el("span", "badge", "not found"));
+  if (r.resolved_faq_id != null) meta.append(el("span", "badge ok", `Answered in FAQ #${r.resolved_faq_id}`));
   c.append(meta, el("div", "q", r.question));
 
   const a = el("p", "a", r.answer);
@@ -48,9 +129,18 @@ function card(r) {
   if (r.latency_ms != null) parts.push(`${r.latency_ms} ms`);
   c.append(el("div", "usage", parts.join(" · ")));
 
-  if (!r.found) {
-    // HOOK(faq): "Answer this" action mounts here
-    c.append(el("div", "faq-hook"));
+  if (!r.found && r.resolved_faq_id == null) {
+    const hook = el("div", "faq-hook");
+    const btn = el("button", "primary", "Answer this");
+    btn.type = "button";
+    btn.onclick = () => {
+      btn.hidden = true;
+      const form = answerForm(r, onChange, () => { btn.hidden = false; });
+      hook.append(form);
+      form.querySelector("textarea").focus();
+    };
+    hook.append(btn);
+    c.append(hook);
   }
   return c;
 }
@@ -75,7 +165,7 @@ export async function mount(root, session) {
   root.append(wrap);
 
   let filter = "all", offset = 0;
-  const choices = [["all", "All"], ["false", "Unanswered"], ["true", "Answered"]];
+  const choices = [["open", "Open"], ["all", "All"], ["false", "Unanswered"], ["true", "Answered"]];
   const buttons = choices.map(([value, label]) => {
     const b = el("button", null, label);
     b.type = "button";
@@ -90,7 +180,7 @@ export async function mount(root, session) {
       const t = s.tokens, denom = t.input + t.cache_read;
       const share = denom ? Math.round(100 * t.cache_read / denom) + "%" : "–";
       stats.innerHTML = "";
-      [[s.total, "questions"], [s.unanswered, "unanswered"], [s.last_7_days, "last 7 days"], [share, "cache-read share"]]
+      [[s.total, "questions"], [s.open_unanswered, "open unanswered"], [s.unanswered, "unanswered"], [s.last_7_days, "last 7 days"], [share, "cache-read share"]]
         .forEach(([v, l]) => {
           const d = el("div", "stat");
           d.append(el("b", null, String(v)), el("span", null, l));
@@ -102,11 +192,12 @@ export async function mount(root, session) {
   async function loadPage() {
     load.disabled = true;
     try {
-      const rows = await getJSON(`/api/admin/logs?found=${filter}&limit=${PAGE}&offset=${offset}`);
-      rows.forEach(r => list.append(card(r)));
+      const q = filter === "open" ? "status=open" : `found=${filter}`;
+      const rows = await getJSON(`/api/admin/logs?${q}&limit=${PAGE}&offset=${offset}`);
+      rows.forEach(r => list.append(card(r, refresh)));
       offset += rows.length;
       load.hidden = rows.length < PAGE;
-      if (!offset) list.append(el("p", "empty", "No questions logged yet."));
+      if (!offset) list.append(el("p", "empty", filter === "open" ? "Nothing waiting for an answer." : "No questions logged yet."));
     } catch (e) {
       list.append(el("p", "empty", "Could not load logs: " + e.message));
     }
@@ -121,5 +212,6 @@ export async function mount(root, session) {
     loadPage();
   }
   load.onclick = loadPage;
-  refresh();
+  // Default to the Open filter when something is waiting for an answer.
+  getJSON("/api/admin/logs/stats").then(s => { if (s.open_unanswered) filter = "open"; }).catch(() => {}).then(refresh);
 }

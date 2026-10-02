@@ -21,3 +21,28 @@
 .logs .load { display: block; width: 100%; min-height: 44px; border: 1px solid var(--border); border-radius: var(--radius);
   background: var(--surface); color: var(--text); font: inherit; cursor: pointer; }
 .logs .empty { color: var(--text-muted); }
+.logs .badge.ok { background: var(--brand-primary); }
+.logs .stats { grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 640px) { .logs .stats { grid-template-columns: repeat(5, 1fr); } }
+.logs .filters { flex-wrap: wrap; }
+.logs .faq-hook { margin-top: 8px; }
+.logs .primary, .logs .ghost { min-height: 40px; padding: 0 14px; border-radius: var(--radius); font: inherit; cursor: pointer; }
+.logs .primary { background: var(--brand-primary); border: 1px solid var(--brand-primary); color: #fff; }
+.logs .ghost { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+.logs .faq-form { display: grid; gap: 10px; margin-top: 8px; }
+.logs .faq-form label { display: grid; gap: 4px; font-weight: 600; }
+.logs .faq-form label small { font-weight: 400; color: var(--text-muted); }
+.logs .faq-form input, .logs .faq-form textarea, .logs .faq-form select { width: 100%; box-sizing: border-box;
+  font: inherit; padding: 8px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); color: var(--text); }
+.logs .faq-form select { min-height: 40px; font-weight: 400; }
+.logs .tools { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.logs .tools select { flex: 1 1 200px; width: auto; min-width: 0; }
+.logs .preview { white-space: pre-wrap; font-weight: 400; background: var(--brand-bg); border: 1px solid var(--border);
+  border-radius: 6px; padding: 8px; margin-top: 6px; }
+.logs .error { color: var(--danger); font-weight: 400; font-size: .9rem; }
+.logs .actions { display: flex; gap: 8px; }
+.logs [hidden] { display: none; }
+.logs .tools select { max-width: 100%; text-overflow: ellipsis; }
+.logs .faq-form { grid-template-columns: minmax(0, 1fr); }
+.logs .faq-form label, .logs .faq-form .tools { min-width: 0; }
+.logs .faq-form label { grid-template-columns: minmax(0, 1fr); }
