@@ -88,8 +88,16 @@ suggestion attached, and an admin accepts, edits or dismisses them.
 - A run summary in the app log: checks run, auto-fixes applied, and issues opened or closed.
 
 ### Running it
-- **Nightly** rule-based checks and **weekly** AI checks, via cron on the droplet:
-  `docker compose -f deploy/docker-compose.yml exec -T app python scripts/maintain_kb.py --all`.
+- **Scheduling is documented, not installed (POC decision).** The intended schedule is
+  **nightly** rule-based checks and **weekly** AI checks. To turn it on, add this to root's
+  crontab on the droplet (`crontab -e`):
+  ```
+  # nightly rule-based checks, 03:15 UTC
+  15 3 * * *  cd /opt/school-ai && docker compose -f deploy/docker-compose.yml exec -T app python scripts/maintain_kb.py --all --rules-only >> /var/log/kb-maintenance.log 2>&1
+  # weekly rule-based + AI checks, Sundays 04:00 UTC
+  0 4 * * 0   cd /opt/school-ai && docker compose -f deploy/docker-compose.yml exec -T app python scripts/maintain_kb.py --all >> /var/log/kb-maintenance.log 2>&1
+  ```
+  Nothing in `deploy/` installs this, so it stays an explicit operator decision.
 - **On demand**: a "Run check now" button in the Data issues tab, limited to the admin's own center.
 - `--dry-run` prints what it would fix or flag without writing anything.
 - **Cost:** the rule-based checks are free. The AI check is about 8k cached tokens per center per

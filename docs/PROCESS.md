@@ -254,7 +254,7 @@ parallel Phase 3 tracks start, the same way as Phase 0.
 | **I · Center themes** | `theme_json` → CSS variables, logo/wordmark, favicon per center | `base.css`, a theme loader | todo |
 | **J · Voice** | Web Speech API mic input + optional read-aloud, with feature detection | `static/voice.js` + one hook in `chat.js` | todo |
 
-| **K · Knowledge maintenance agent** | Scheduled and on-demand agent. It fixes clear-cut issues itself and files everything else in a "Data issues" review queue. Spec: [KNOWLEDGE_MAINTENANCE.md](KNOWLEDGE_MAINTENANCE.md) §3 | `app/maintenance.py`, `scripts/maintain_kb.py`, `kb_issues` table, `static/admin/issues.js`, a cron entry in `deploy/` | todo |
+| **K · Knowledge maintenance agent** | Scheduled and on-demand agent. It fixes clear-cut issues itself and files everything else in a "Data issues" review queue. Spec: [KNOWLEDGE_MAINTENANCE.md](KNOWLEDGE_MAINTENANCE.md) §3 | `app/maintenance.py`, `scripts/maintain_kb.py`, `kb_issues` table, `static/admin/issues.js`. The cron schedule is **documented only, not installed** (operator decision) | todo |
 
 - All Phase 3 tracks start after Phase 3.0 merges.
 - G and J both touch `chat.js`. J only adds a hook that Phase 0 or G defines, so G merges first.
