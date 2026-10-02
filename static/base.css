@@ -40,3 +40,9 @@ body {
   color: var(--text);
   line-height: 1.45;
 }
+
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--brand-accent); outline-offset: 2px; }
+a { color: var(--brand-primary); }
+@media (prefers-color-scheme: dark) { a { color: var(--brand-accent); } }
