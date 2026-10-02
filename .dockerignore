@@ -1,0 +1,10 @@
+.git
+.claude/
+data/
+claude-key
+.env*
+.venv
+__pycache__
+*.pyc
+docs/
+*.rtf
