@@ -222,7 +222,20 @@ function showChat(s) {
     el("div", { class: "chips" }, SUGGESTIONS.map((q) => el("button", { class: "chip-q", type: "button", text: q, onclick: () => ask(q) }))));
   messages.append(empty);
 
+  // Mints a new thread id and clears the list; the session stays.
+  function newConversation() {
+    conversationId = crypto.randomUUID();
+    lastQuestion = null;
+    messages.replaceChildren(empty);
+    input.focus();
+  }
+  const newConvo = el("button", {
+    class: "btn", type: "button", text: "New conversation", onclick: () => { if (!busy) newConversation(); },
+    style: "min-height:40px;padding:4px 12px;font-size:.85rem;margin-bottom:6px",
+  });
+
   const composer = el("div", { class: "composer" },
+    el("div", { class: "thread-controls" }, newConvo),
     el("div", { class: "composer-row" },
       input,
       // HOOK(voice): mic button mounts here
@@ -285,12 +298,17 @@ function showChat(s) {
       typing.remove();
       if (res.ok) {
         add(botMessage(data));
+        document.dispatchEvent(new CustomEvent("chat:answer", { detail: { text: data.answer || "" } }));
       } else if (res.status === 401) {
         showPicker("Your session ended. Please choose a center again.");
         return;
       } else if (res.status === 429) {
         const lead = data?.kind === "budget" ? "Daily usage limit reached. " : "You're sending questions too quickly. ";
         add(errorMessage(lead + (data?.detail || "")));
+      } else if (res.status === 400 && data?.kind === "turn_cap") {
+        const node = errorMessage(data.detail);
+        node.append(el("button", { class: "btn", type: "button", text: "Start a new conversation", onclick: newConversation }));
+        add(node);
       } else if (res.status === 400) {
         add(errorMessage(data?.detail || "That message couldn't be sent."));
       } else {

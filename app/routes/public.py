@@ -7,7 +7,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request, Response
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
-from app import chat, config, db, limits, session as sessions
+from app import chat, config, db, history, limits, session as sessions
 
 router = APIRouter(prefix="/api")
 
@@ -83,5 +83,7 @@ def post_chat(body: ChatIn, request: Request, session: dict = Depends(sessions.r
         return chat.answer(session, message, body.conversation_id, client_ip(request))
     except limits.LimitExceeded as e:
         return JSONResponse({"detail": e.detail, "kind": e.kind}, status_code=429)
+    except history.TurnCapReached as e:
+        return JSONResponse({"detail": e.detail, "kind": e.kind}, status_code=400)
     except chat.UpstreamError:
         raise HTTPException(503, "The assistant is temporarily unavailable. Please try again shortly.")
