@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Marguerite Alvarado",
+    "position": "Center Director",
+    "phone": "(505) 555-0121",
+    "email": "director@juniperhill.test",
+    "sort_order": 1
+  },
+  {
+    "name": "Theodore Brandt",
+    "position": "Assistant Director",
+    "phone": "(505) 555-0122",
+    "email": "assistant.director@juniperhill.test",
+    "sort_order": 2
+  },
+  {
+    "name": "Front Desk",
+    "position": "Front Office",
+    "phone": "(505) 555-0120",
+    "email": "office@juniperhill.test",
+    "sort_order": 3
+  },
+  {
+    "name": "Imani Okafor",
+    "position": "Enrollment Coordinator",
+    "phone": "(505) 555-0123",
+    "email": "enroll@juniperhill.test",
+    "sort_order": 4
+  },
+  {
+    "name": "Rosalind Vega, RN",
+    "position": "Center Nurse (health and illness questions)",
+    "phone": "(505) 555-0124",
+    "email": "nurse@juniperhill.test",
+    "sort_order": 5
+  },
+  {
+    "name": "Desmond Whitfield",
+    "position": "Food Service Manager",
+    "phone": "(505) 555-0125",
+    "email": "kitchen@juniperhill.test",
+    "sort_order": 6
+  },
+  {
+    "name": "Priya Raman",
+    "position": "Lead Teacher, Infant Room (Sparrows)",
+    "phone": "(505) 555-0126",
+    "email": "sparrows@juniperhill.test",
+    "sort_order": 7
+  },
+  {
+    "name": "Carlos Medina",
+    "position": "Lead Teacher, Toddler Room (Chipmunks)",
+    "phone": "(505) 555-0127",
+    "email": "chipmunks@juniperhill.test",
+    "sort_order": 8
+  },
+  {
+    "name": "Hannah Lindqvist",
+    "position": "Lead Teacher, Pre-K Room (Owls)",
+    "phone": "(505) 555-0128",
+    "email": "owls@juniperhill.test",
+    "sort_order": 9
+  }
+]

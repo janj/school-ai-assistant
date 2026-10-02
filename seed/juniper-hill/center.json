@@ -1,0 +1,16 @@
+{
+  "slug": "juniper-hill",
+  "name": "Juniper Hill Early Learning Center",
+  "tagline": "Growing together, from first steps to kindergarten",
+  "address": "2210 Juniper Hill Road NE, Riverbend, NM 87199",
+  "main_phone": "(505) 555-0120",
+  "main_email": "office@juniperhill.test",
+  "website": "https://www.juniperhill.test",
+  "theme": {
+    "primary": "#2f6b3f",
+    "accent": "#b9822f",
+    "background": "#f6f4ec",
+    "font": "Georgia, 'Times New Roman', serif",
+    "logo_text": "JH"
+  }
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "day": "Monday",
+    "meal": "AM Snack",
+    "items": "Apple slices and cheddar cheese; water",
+    "notes": "Served 9:30 AM. Provided by the center; nut-free. Lunch is not provided: families pack lunch for full-day children."
+  },
+  {
+    "day": "Tuesday",
+    "meal": "AM Snack",
+    "items": "Banana halves and whole-grain crackers; water",
+    "notes": "Served 9:30 AM. Provided by the center; nut-free."
+  },
+  {
+    "day": "Wednesday",
+    "meal": "AM Snack",
+    "items": "Cucumber sticks with ranch dip and pretzels; water",
+    "notes": "Served 9:30 AM. Provided by the center; nut-free."
+  },
+  {
+    "day": "Thursday",
+    "meal": "AM Snack",
+    "items": "Orange wedges and string cheese; water",
+    "notes": "Served 9:30 AM. Provided by the center; nut-free."
+  },
+  {
+    "day": "Friday",
+    "meal": "AM Snack",
+    "items": "Berries and vanilla yogurt cups; water",
+    "notes": "Served 9:30 AM. Provided by the center; nut-free."
+  }
+]

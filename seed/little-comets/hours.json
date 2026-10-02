@@ -1,0 +1,20 @@
+[
+  {
+    "days": "Monday-Friday",
+    "open_time": "07:30",
+    "close_time": "17:30",
+    "notes": "Part-day program runs 8:30 AM to 12:30 PM. Full-day program runs 8:30 AM to 3:30 PM, with optional extended care from 7:30 AM and until 5:30 PM."
+  },
+  {
+    "days": "Saturday-Sunday",
+    "open_time": null,
+    "close_time": null,
+    "notes": "Closed"
+  },
+  {
+    "days": "Wednesdays",
+    "open_time": "07:30",
+    "close_time": "15:30",
+    "notes": "Early release: the center closes at 3:30 PM every Wednesday for teacher planning. No extended care after 3:30 PM."
+  }
+]

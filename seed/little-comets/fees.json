@@ -1,0 +1,79 @@
+[
+  {
+    "category": "Tuition",
+    "name": "Part-day, 5 days per week (8:30 AM-12:30 PM)",
+    "amount_cents": 16500,
+    "period": "weekly",
+    "notes": null
+  },
+  {
+    "category": "Tuition",
+    "name": "Part-day, 3 days per week (Mon/Wed/Fri)",
+    "amount_cents": 11000,
+    "period": "weekly",
+    "notes": null
+  },
+  {
+    "category": "Tuition",
+    "name": "Full-day, 5 days per week (8:30 AM-3:30 PM)",
+    "amount_cents": 28500,
+    "period": "weekly",
+    "notes": null
+  },
+  {
+    "category": "Tuition",
+    "name": "Full-day, 3 days per week (Mon/Wed/Fri)",
+    "amount_cents": 18500,
+    "period": "weekly",
+    "notes": null
+  },
+  {
+    "category": "Extended care",
+    "name": "Extended care (7:30-8:30 AM or 3:30-5:30 PM)",
+    "amount_cents": 2500,
+    "period": "per day",
+    "notes": "Not available after 3:30 PM on Wednesdays. Per session used."
+  },
+  {
+    "category": "Registration",
+    "name": "Registration fee",
+    "amount_cents": 5000,
+    "period": "one-time",
+    "notes": "Non-refundable. Holds your child's place."
+  },
+  {
+    "category": "Supplies",
+    "name": "Supply fee",
+    "amount_cents": 8500,
+    "period": "per semester",
+    "notes": "Charged in August and January. Covers art supplies and the class T-shirt."
+  },
+  {
+    "category": "Late pickup",
+    "name": "Late pickup fee",
+    "amount_cents": 1500,
+    "period": "per 15-minute block",
+    "notes": "Starts after a 10-minute grace period (after 5:40 PM, or 10 minutes after your program ends). Any part of a block counts as a full block."
+  },
+  {
+    "category": "Returned payment",
+    "name": "Returned payment fee",
+    "amount_cents": 2500,
+    "period": "per occurrence",
+    "notes": "Plus any bank fees."
+  },
+  {
+    "category": "Discount",
+    "name": "Sibling discount",
+    "amount_cents": -1000,
+    "period": "weekly",
+    "notes": "$10 off per week for the second and each additional child enrolled."
+  },
+  {
+    "category": "Payments",
+    "name": "Tuition due date",
+    "amount_cents": null,
+    "period": "weekly",
+    "notes": "Paid every Friday for the following week, by card or bank transfer through the parent portal."
+  }
+]

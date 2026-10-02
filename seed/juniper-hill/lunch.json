@@ -1,0 +1,92 @@
+[
+  {
+    "day": "Monday",
+    "meal": "Breakfast",
+    "items": "Oatmeal with banana slices; milk",
+    "notes": "Served 8:00-8:45 AM. Menu repeats weekly; the nutrition team posts monthly updates. No peanuts or tree nuts are used in the kitchen."
+  },
+  {
+    "day": "Monday",
+    "meal": "Lunch",
+    "items": "Turkey and cheese roll-up, steamed green beans, pears; milk",
+    "notes": "Served 11:00-12:15 PM depending on room"
+  },
+  {
+    "day": "Monday",
+    "meal": "PM Snack",
+    "items": "Whole-grain crackers and hummus",
+    "notes": "Served 2:15-2:45 PM"
+  },
+  {
+    "day": "Tuesday",
+    "meal": "Breakfast",
+    "items": "Scrambled eggs, whole-wheat toast; milk",
+    "notes": "Served 8:00-8:45 AM"
+  },
+  {
+    "day": "Tuesday",
+    "meal": "Lunch",
+    "items": "Baked chicken drumstick, brown rice, roasted carrots; milk",
+    "notes": "Served 11:00-12:15 PM depending on room"
+  },
+  {
+    "day": "Tuesday",
+    "meal": "PM Snack",
+    "items": "Apple slices and sunflower seed butter",
+    "notes": "Served 2:15-2:45 PM"
+  },
+  {
+    "day": "Wednesday",
+    "meal": "Breakfast",
+    "items": "Yogurt with blueberries, granola",
+    "notes": "Served 8:00-8:45 AM"
+  },
+  {
+    "day": "Wednesday",
+    "meal": "Lunch",
+    "items": "Black bean quesadilla, corn, orange wedges; milk",
+    "notes": "Served 11:00-12:15 PM depending on room"
+  },
+  {
+    "day": "Wednesday",
+    "meal": "PM Snack",
+    "items": "Cucumber rounds and cheese cubes",
+    "notes": "Served 2:15-2:45 PM"
+  },
+  {
+    "day": "Thursday",
+    "meal": "Breakfast",
+    "items": "Whole-grain pancakes with applesauce; milk",
+    "notes": "Served 8:00-8:45 AM"
+  },
+  {
+    "day": "Thursday",
+    "meal": "Lunch",
+    "items": "Pasta with turkey meat sauce, broccoli, peaches; milk",
+    "notes": "Served 11:00-12:15 PM depending on room"
+  },
+  {
+    "day": "Thursday",
+    "meal": "PM Snack",
+    "items": "Banana bread",
+    "notes": "Served 2:15-2:45 PM"
+  },
+  {
+    "day": "Friday",
+    "meal": "Breakfast",
+    "items": "Cream of wheat with cinnamon; milk",
+    "notes": "Served 8:00-8:45 AM"
+  },
+  {
+    "day": "Friday",
+    "meal": "Lunch",
+    "items": "Baked fish sticks, sweet potato wedges, peas; milk",
+    "notes": "Served 11:00-12:15 PM depending on room"
+  },
+  {
+    "day": "Friday",
+    "meal": "PM Snack",
+    "items": "Pretzels and sliced pears",
+    "notes": "Served 2:15-2:45 PM"
+  }
+]

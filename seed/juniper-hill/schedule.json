@@ -1,0 +1,176 @@
+[
+  {
+    "age_group": "Infants",
+    "start_time": "06:30",
+    "end_time": "08:00",
+    "activity": "Arrival, greeting and free play"
+  },
+  {
+    "age_group": "Infants",
+    "start_time": "08:00",
+    "end_time": "08:30",
+    "activity": "Bottles or breakfast"
+  },
+  {
+    "age_group": "Infants",
+    "start_time": "08:30",
+    "end_time": "10:00",
+    "activity": "Tummy time, sensory play, first nap on demand"
+  },
+  {
+    "age_group": "Infants",
+    "start_time": "10:00",
+    "end_time": "10:30",
+    "activity": "Outdoor stroller walk or garden time"
+  },
+  {
+    "age_group": "Infants",
+    "start_time": "10:30",
+    "end_time": "11:30",
+    "activity": "Bottles or lunch, story and songs"
+  },
+  {
+    "age_group": "Infants",
+    "start_time": "11:30",
+    "end_time": "14:00",
+    "activity": "Afternoon nap (each baby follows their own sleep pattern)"
+  },
+  {
+    "age_group": "Infants",
+    "start_time": "14:00",
+    "end_time": "15:00",
+    "activity": "Bottles or snack, floor play"
+  },
+  {
+    "age_group": "Infants",
+    "start_time": "15:00",
+    "end_time": "16:30",
+    "activity": "Music, mobiles, outdoor time"
+  },
+  {
+    "age_group": "Infants",
+    "start_time": "16:30",
+    "end_time": "18:00",
+    "activity": "Quiet play and family pick-up"
+  },
+  {
+    "age_group": "Toddlers",
+    "start_time": "06:30",
+    "end_time": "08:15",
+    "activity": "Arrival and free play"
+  },
+  {
+    "age_group": "Toddlers",
+    "start_time": "08:15",
+    "end_time": "08:45",
+    "activity": "Breakfast"
+  },
+  {
+    "age_group": "Toddlers",
+    "start_time": "08:45",
+    "end_time": "10:00",
+    "activity": "Circle time and sensory table"
+  },
+  {
+    "age_group": "Toddlers",
+    "start_time": "10:00",
+    "end_time": "11:00",
+    "activity": "Outdoor playground"
+  },
+  {
+    "age_group": "Toddlers",
+    "start_time": "11:00",
+    "end_time": "11:45",
+    "activity": "Lunch"
+  },
+  {
+    "age_group": "Toddlers",
+    "start_time": "11:45",
+    "end_time": "14:15",
+    "activity": "Nap time"
+  },
+  {
+    "age_group": "Toddlers",
+    "start_time": "14:15",
+    "end_time": "14:45",
+    "activity": "PM snack"
+  },
+  {
+    "age_group": "Toddlers",
+    "start_time": "14:45",
+    "end_time": "16:00",
+    "activity": "Art, music and movement"
+  },
+  {
+    "age_group": "Toddlers",
+    "start_time": "16:00",
+    "end_time": "18:00",
+    "activity": "Free play and pick-up"
+  },
+  {
+    "age_group": "Preschool and Pre-K",
+    "start_time": "06:30",
+    "end_time": "08:00",
+    "activity": "Arrival and quiet activities"
+  },
+  {
+    "age_group": "Preschool and Pre-K",
+    "start_time": "08:00",
+    "end_time": "08:30",
+    "activity": "Breakfast"
+  },
+  {
+    "age_group": "Preschool and Pre-K",
+    "start_time": "08:30",
+    "end_time": "09:15",
+    "activity": "Morning meeting and calendar"
+  },
+  {
+    "age_group": "Preschool and Pre-K",
+    "start_time": "09:15",
+    "end_time": "10:30",
+    "activity": "Learning centers (literacy, math, science)"
+  },
+  {
+    "age_group": "Preschool and Pre-K",
+    "start_time": "10:30",
+    "end_time": "11:30",
+    "activity": "Outdoor play"
+  },
+  {
+    "age_group": "Preschool and Pre-K",
+    "start_time": "11:30",
+    "end_time": "12:15",
+    "activity": "Lunch"
+  },
+  {
+    "age_group": "Preschool and Pre-K",
+    "start_time": "12:15",
+    "end_time": "14:00",
+    "activity": "Rest time (quiet activities for non-sleepers after 45 minutes)"
+  },
+  {
+    "age_group": "Preschool and Pre-K",
+    "start_time": "14:00",
+    "end_time": "14:30",
+    "activity": "PM snack"
+  },
+  {
+    "age_group": "Preschool and Pre-K",
+    "start_time": "14:30",
+    "end_time": "15:30",
+    "activity": "Project time, music or garden"
+  },
+  {
+    "age_group": "Preschool and Pre-K",
+    "start_time": "15:30",
+    "end_time": "16:30",
+    "activity": "Outdoor play"
+  },
+  {
+    "age_group": "Preschool and Pre-K",
+    "start_time": "16:30",
+    "end_time": "18:00",
+    "activity": "Free play, story and pick-up"
+  }
+]
