@@ -233,7 +233,7 @@ I'll merge it together with the other tracks in Phase 2, once Tracks A and B hav
 
 **Still open from my last message:** for Track B's refusal fallback, should I keep it and record which model answered in the Q/A log, or remove it? Track B is still running, so I can pass your answer to it before it finishes.
 
-_Work this turn: 1 tool calls (Bash ×1)._
+_Work this turn: 1 tool call (Bash ×1)._
 
 > **Subagent report (Track F deploy)** · 8:01 PM: Track F is done and committed on `track/f-deploy` (084699f).
 
@@ -293,7 +293,7 @@ Track E (Q/A logging) is finished. The personal-info scrubbing was tested with a
 
 **Still waiting on you:** for Track B's refusal fallback, should I keep it and log which model answered, or remove it?
 
-_Work this turn: 1 tool calls (Bash ×1)._
+_Work this turn: 1 tool call (Bash ×1)._
 
 > **Subagent report (Track B chat backend)** · 8:02 PM: Track B is committed on `track/b-chat-backend` (commit 5690876, not pushed or merged).
 
@@ -377,7 +377,7 @@ The test questions cost a little in API calls: about 60 questions across both ce
 
 **Should I go ahead with the merges and Phase 2?** Separately, whenever it suits you, create the droplet using `docs/DEPLOY.md` and send me its IP.
 
-_Work this turn: 1 tool calls (Bash ×1)._
+_Work this turn: 1 tool call (Bash ×1)._
 
 ## Droplet setup
 
@@ -452,7 +452,7 @@ On its first run it creates the server's `.env` from your local `claude-key`; th
 
 If you'd like the guide in your folder now, I can merge just the deploy branch on its own; it doesn't depend on the others. Or I can go straight into Phase 2 and merge everything. Which do you prefer?
 
-_Work this turn: 1 tool calls (Bash ×1)._
+_Work this turn: 1 tool call (Bash ×1)._
 
 ### Operator · 8:17 PM
 
@@ -471,7 +471,7 @@ I tried to look the droplet up with `doctl` on this Mac, but the DigitalOcean AP
 
 One limit: I can't fully confirm SSH is restricted to your IP from this Mac, because that's your IP. Your rule will show in the DigitalOcean UI under **Networking → Firewalls**. Or, if you give `doctl` a token with read access to droplets and firewalls, I can check the rules directly.
 
-_Work this turn: 1 tool calls (Bash ×1)._
+_Work this turn: 1 tool call (Bash ×1)._
 
 ### Operator · 8:18 PM
 
@@ -934,7 +934,7 @@ Track J (voice) is finished, and its branch stays within its files.
 
 **Status:** J is finished; G, H, I and K are still running.
 
-_Work this turn: 1 tool calls (Bash ×1)._
+_Work this turn: 1 tool call (Bash ×1)._
 
 ### Operator · 9:16 PM
 
@@ -1000,7 +1000,7 @@ Track I (themes) is finished and stays within its files. The `chat.js` and admin
 
 **Still open from my last message:** should the context-based fact matching go to Track K now, or come as a follow-up after K merges? I recommend the follow-up.
 
-_Work this turn: 1 tool calls (Bash ×1)._
+_Work this turn: 1 tool call (Bash ×1)._
 
 > **Subagent report (Track G conversation context)** · 9:17 PM: Track G is done and committed as bf1ac64 on branch `track/g-conversation`.
 
@@ -1034,7 +1034,7 @@ Three branches all edit `chat.js`, but in separate parts, so merging should be s
 
 **Still open:** should the context-based fact matching go to K now, or come as a follow-up?
 
-_Work this turn: 1 tool calls (Bash ×1)._
+_Work this turn: 1 tool call (Bash ×1)._
 
 > **Subagent report (Track H FAQ queue)** · 9:17 PM: Track H is implemented and committed on `track/h-faq-queue` (0a5eba4, not pushed).
 
@@ -1082,7 +1082,7 @@ Only Track K (maintenance) is still running. Once it finishes, I'll start integr
 
 **Still waiting on you:** should the context-based fact matching go to K now, or come as a follow-up after K merges? I recommend the follow-up.
 
-_Work this turn: 1 tool calls (Bash ×1)._
+_Work this turn: 1 tool call (Bash ×1)._
 
 > **Subagent report (Track K maintenance agent)** · 9:19 PM: Track K is committed on branch `track/k-maintenance` (243a077).
 
@@ -1130,7 +1130,7 @@ Each AI check costs roughly 8,000 cached tokens plus about 1,500 output tokens, 
 
 Say go and I'll do it end to end, as in Phase 2.
 
-_Work this turn: 1 tool calls (Bash ×1)._
+_Work this turn: 1 tool call (Bash ×1)._
 
 ## Phase 3: integration, seed consistency and deploy
 
@@ -1488,4 +1488,4 @@ _9:55 PM_
 
 > can you export this transcript as a clean md file in this repo, and can it include high level timestamps?
 
-_Work this turn: 1 tool calls (ToolSearch ×1)._
+_Work this turn: 1 tool call (ToolSearch ×1)._
