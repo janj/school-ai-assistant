@@ -45,8 +45,9 @@ All bodies are JSON. Errors are `{"detail": str}` (FastAPI's default), unless no
 - `ChatAnswer` = `{answer: str, found: bool, sources: [section_id], contact: {phone, email} | null, conversation_id: str | null}`
   - `answer` is plain text with light markdown allowed: `**bold**`, lists, line breaks.
   - `contact` is non-null exactly when `found` is false. The server fills it from `centers.main_phone` / `main_email`.
-  - `conversation_id` is echoed back. Phase 1 ignores it; Track G uses it.
-- Chat errors:
+  - `conversation_id` is echoed back. Follow-ups in the same conversation get the last 4 turns as
+    context (Phase 3, `app/history.py`; history is in memory only and tied to the session).
+- Chat errors (plus `400 {detail, kind: "turn_cap"}` after 8 turns in one conversation):
   - `400` for an empty message or one over 1,000 characters.
   - `401` when there's no session.
   - `429 {detail, kind: "rate" | "budget"}`.
@@ -83,7 +84,17 @@ All bodies are JSON. Errors are `{"detail": str}` (FastAPI's default), unless no
 | Method | Path | Response |
 |---|---|---|
 | GET | `/api/admin/logs?found=all\|false\|true&limit=&offset=` | → `[qa_log row]`, newest first |
-| GET | `/api/admin/logs/stats` | → `{total, unanswered, last_7_days, tokens: {input, output, cache_read}}` |
+| GET | `/api/admin/logs/stats` | → `{total, unanswered, open_unanswered, last_7_days, tokens: {input, output, cache_read}}` |
+| GET | `/api/admin/logs?status=open` | → unanswered rows not yet answered as an FAQ (Phase 3, Track H) |
+| POST | `/api/admin/logs/{id}/answer` | `{question, answer}` → the new `faq` row. Placeholders are validated like policies; 409 if already answered |
+
+### Data issues (Phase 3, Track K). All need `require_admin`; center comes from the session
+| Method | Path | Body → Response |
+|---|---|---|
+| GET | `/api/admin/issues?status=open` | → `[kb_issues row]` |
+| POST | `/api/admin/issues/{id}/status` | `{status: resolved\|dismissed}` → the row |
+| POST | `/api/admin/issues/run` | `{ai: bool}` → run summary. AI runs are limited to 1 per 10 minutes per center (429) |
+| GET | `/api/admin/issues/auto-fixes` | → `audit_log` rows written by `kb-maintenance-agent` |
 
 ## 4. Knowledge-base rendering (Track B owns `app/kb.py`)
 

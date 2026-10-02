@@ -63,6 +63,21 @@ both for first start and for an admin's "reset to original data".
    database.
 5. `qa_log.log_turn` runs in the background and never blocks or breaks the reply.
 
+## Phase 3 features
+- **Conversations** (`app/history.py`): the last 4 turns go into `messages` after the cached system
+  blocks, so caching still works. 8-turn cap, 30-minute idle reset, keyed by session and conversation
+  id. Haiku rewrites follow-ups into standalone questions for the logs (it runs in parallel, so it
+  adds no latency).
+- **FAQ queue:** unanswered questions in Logs become `faq` rows (with placeholders) that the chat
+  uses straight away.
+- **Data issues** (`app/maintenance.py`): rule-based checks plus an AI review, safe auto-fixes and
+  an admin queue. See [KNOWLEDGE_MAINTENANCE.md](KNOWLEDGE_MAINTENANCE.md). The schedule is
+  documented, not installed.
+- **Themes** (`static/theme.js`): per-center colors, font, background pattern and favicon, checked
+  for WCAG AA contrast. Themes come from seed `center.json` and are re-applied on every start.
+- **Voice** (`static/voice.js`): the browser's Web Speech API for the mic and read-aloud. It's
+  hidden where unsupported, and audio never reaches our server.
+
 ## Observability
 - `docker compose logs app` shows one `chat usage` line per answer (center, model, tokens,
   cache reads/writes).
@@ -75,7 +90,7 @@ both for first start and for an admin's "reset to original data".
 - No real auth: anyone can choose Admin. This was a deliberate demo choice; reset to seed limits
   the damage.
 - One worker, so the limits reset on restart. SQLite with a single writer.
-- No conversation memory yet: each question stands alone (Phase 3, Track G).
+- Conversation history is in memory, so a restart or deploy clears conversations in progress.
 - The same fact can appear in two places (e.g. the registration fee in `fees` and in the
   enrollment policy). If an admin edits only one, the assistant reports the conflict instead of
   picking a value. **Phase 3.0** fixes this with placeholders and a `facts` table (each fact has

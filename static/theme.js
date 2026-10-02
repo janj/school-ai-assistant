@@ -23,7 +23,7 @@ export function contrast(a, b) {
   return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
 }
 // Whichever of white / near-black reads better on the given color.
-function onColor(hex) {
+export function onColor(hex) {
   return contrast(hex, "#ffffff") >= contrast(hex, "#111111") ? "#fff" : "#111";
 }
 

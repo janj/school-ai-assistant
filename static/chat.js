@@ -69,8 +69,17 @@ function renderMarkdown(text) {
 }
 
 // ---- Theme ---- (logic lives in theme.js)
-import { applyTheme as applyThemeShared } from "/static/theme.js";
+import { applyTheme as applyThemeShared, onColor } from "/static/theme.js";
 function applyTheme(theme) { applyThemeShared(theme); }
+
+// ---- Voice ---- (voice.js loads lazily; if it fails, chat works without it)
+function voiceSlot(input, send) {
+  const slot = el("div", { class: "voice-slot" });
+  import("/static/voice.js")
+    .then((m) => m.mountVoice(slot, { input, send, getLang: () => navigator.language }))
+    .catch(() => {});
+  return slot;
+}
 
 // ---- API ----
 async function api(path, opts = {}) {
@@ -116,7 +125,12 @@ async function showPicker(notice) {
       class: "card-opt", role: "radio", "aria-checked": "false", type: "button",
       style: `--tint:${c.theme?.primary || "var(--brand-primary)"}`,
       onclick: () => { center = c; centerCards.forEach((x) => x.setAttribute("aria-checked", x === card)); sync(); },
-    }, el("strong", { text: c.name }), el("span", { class: "muted", text: c.tagline || "" }));
+    },
+    c.theme?.logo_text && c.theme?.primary
+      ? el("span", { class: "card-badge", "aria-hidden": "true", text: c.theme.logo_text,
+                     style: `background:${c.theme.primary};color:${onColor(c.theme.primary)}` })
+      : null,
+    el("strong", { text: c.name }), el("span", { class: "muted", text: c.tagline || "" }));
     return card;
   });
   const roleCards = [["parent", "Parent", "Ask questions about the center"], ["admin", "Admin", "Ask questions and edit center information"]]
@@ -215,7 +229,7 @@ function showChat(s) {
     el("div", { class: "thread-controls" }, newConvo),
     el("div", { class: "composer-row" },
       input,
-      ((slot) => (import("/static/voice.js").then((m) => m.mountVoice(slot, { input, send: ask, getLang: () => navigator.language })).catch(() => {}), slot))(el("div", { class: "voice-slot" })),
+      voiceSlot(input, (text) => ask(text)),
       send),
     counter);
   app.replaceChildren(el("div", { class: "chat" }, header, messages, composer));

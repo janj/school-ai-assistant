@@ -58,11 +58,5 @@
     "end_date": null,
     "name": "Last day of the school year",
     "notes": "Final day of the regular program; the center closes for the summer after this day."
-  },
-  {
-    "start_date": "2027-07-05",
-    "end_date": null,
-    "name": "Independence Day observed",
-    "notes": null
   }
 ]

@@ -18,6 +18,8 @@ body { overflow-x: hidden; }
   background: color-mix(in srgb, var(--tint, transparent) 7%, var(--surface-tint)); }
 .card-opt[aria-checked="true"] { border-color: var(--tint, var(--brand-primary)); box-shadow: 0 0 0 2px var(--tint, var(--brand-primary)); }
 .card-opt strong { display: block; }
+.card-opt .card-badge { float: right; margin-left: 8px; min-width: 2.2em; padding: 4px 6px; border-radius: 8px;
+                        font-weight: 700; font-size: .8rem; text-align: center; }
 .roles { display: flex; gap: 12px; flex-wrap: wrap; }
 .roles .card-opt { flex: 1 1 140px; border-left-width: 2px; --tint: var(--brand-primary); }
 .field { display: block; margin-top: 12px; }

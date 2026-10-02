@@ -238,15 +238,17 @@ def _ai_issues(slug: str) -> tuple[list[dict], dict]:
     if response.stop_reason == "refusal" or text is None:
         raise ValueError("the model returned no usable output")
     raw = json.loads(text).get("issues", [])
-    valid, seen, out = kb.section_ids(slug), {}, []
+    valid, out = kb.section_ids(slug), []
     for r in raw:
         if r.get("kind") not in AI_KINDS or not r.get("detail"):
             continue
         section = r["section"] if r.get("section") in valid else "general"
-        # Wording changes between runs, so the fingerprint is kind + section (+ ordinal if several).
-        n = seen[(r["kind"], section)] = seen.get((r["kind"], section), 0) + 1
-        out.append(_issue(r["kind"], section, r["detail"].strip(), (r.get("suggestion") or "").strip() or None,
-                          _fp(r["kind"], section, str(n)), severity="medium" if r["kind"] != "gap" else "low"))
+        detail = r["detail"].strip()
+        # Keyed on content: a different finding in the same section must not overwrite an earlier
+        # one. Rewordings of the same finding can show up as near-duplicates; admins dismiss those.
+        out.append(_issue(r["kind"], section, detail, (r.get("suggestion") or "").strip() or None,
+                          _fp(r["kind"], section, " ".join(detail.lower().split())),
+                          severity="medium" if r["kind"] != "gap" else "low"))
     return out, usage
 
 
@@ -325,7 +327,9 @@ def run(center_slug: str, *, rules: bool = True, ai: bool = False, dry_run: bool
             summary["issues_opened"] += o
             summary["issues_resolved"] += r
         if "ai" in found:
-            o, r = _sync(conn, center_slug, found["ai"], set(AI_KINDS), dry_run)
+            # AI findings vary between runs, so "not found this time" doesn't mean fixed: AI issues
+            # are only ever closed by an admin (resolve/dismiss), never automatically.
+            o, r = _sync(conn, center_slug, found["ai"], set(), dry_run)
             summary["issues_opened"] += o
             summary["issues_resolved"] += r
         summary["issues_open_total"] = db.rows(

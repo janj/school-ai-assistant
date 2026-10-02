@@ -14,7 +14,7 @@
 ## Not allowed
 - Toys from home, including toy weapons and electronic toys or tablets.
 - Medication in the child's bag. All medicine must be handed to the nurse with a signed form.
-- Food or drinks from home, except infant bottles and food for a documented medical or dietary need approved by the nurse.
+- Food or drinks from home, except infant bottles, food for a documented medical or dietary need approved by the nurse, and birthday treats that follow the Birthdays policy.
 - Jewelry, loose beads, hoop earrings, and shoes without backs (flip-flops, clogs) for safety.
 - Gum, candy and hard snacks.
 

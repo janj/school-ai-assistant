@@ -2,7 +2,7 @@
   {
     "key": "part_day_5",
     "category": "Tuition",
-    "name": "Part-day, 5 days per week (8:30 AM-12:30 PM)",
+    "name": "Part-day, 5 days per week",
     "amount_cents": 16500,
     "period": "weekly",
     "notes": null
@@ -18,7 +18,7 @@
   {
     "key": "full_day_5",
     "category": "Tuition",
-    "name": "Full-day, 5 days per week (8:30 AM-3:30 PM)",
+    "name": "Full-day, 5 days per week",
     "amount_cents": 28500,
     "period": "weekly",
     "notes": null
@@ -34,10 +34,10 @@
   {
     "key": "extended_care",
     "category": "Extended care",
-    "name": "Extended care (7:30-8:30 AM or 3:30-5:30 PM)",
+    "name": "Extended care (before and after the full-day program)",
     "amount_cents": 2500,
     "period": "per day",
-    "notes": "Not available after 3:30 PM on Wednesdays. Per session used."
+    "notes": "Not available after closing on Wednesdays. Per session used."
   },
   {
     "key": "registration",
@@ -61,7 +61,7 @@
     "name": "Late pickup fee",
     "amount_cents": 1500,
     "period": "per 15-minute block",
-    "notes": "Starts after a 10-minute grace period (after 5:40 PM, or 10 minutes after your program ends). Any part of a block counts as a full block."
+    "notes": "Starts after the grace period (see facts). Any part of a block counts as a full block."
   },
   {
     "key": "returned_payment",
@@ -77,7 +77,7 @@
     "name": "Sibling discount",
     "amount_cents": -1000,
     "period": "weekly",
-    "notes": "$10 off per week for the second and each additional child enrolled."
+    "notes": "For the second and each additional child enrolled."
   },
   {
     "key": "tuition_due",

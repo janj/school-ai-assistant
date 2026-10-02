@@ -4,7 +4,7 @@
     "days": "Monday-Friday",
     "open_time": "06:30",
     "close_time": "18:00",
-    "notes": "Children must be picked up by 6:00 PM. Front office staffed 7:00 AM to 5:30 PM."
+    "notes": "Children must be picked up by closing time. Front office staffed 7:00 AM to 5:30 PM."
   },
   {
     "key": "weekends",
@@ -18,6 +18,6 @@
     "days": "Early release days",
     "open_time": "06:30",
     "close_time": "15:00",
-    "notes": "The center closes at 3:00 PM on the last Friday of each month (staff meeting) and on the day before Thanksgiving break and winter break."
+    "notes": "Early closing on the last Friday of each month (staff meeting) and on the day before Thanksgiving break and winter break."
   }
 ]

@@ -26,9 +26,14 @@ rules that prevent drift** and **a recurring check that catches what gets throug
    "$75.00".
 3. **If prose doesn't need the value, point to its home:** "Late fees are listed under Fees",
    or "call the nurse (see Directory)".
-4. **Never type a value that has a home.** A literal "$75" or "(505) 555-0124" in a policy is a
+4. **This applies to table notes and names too, not just policies.** A note like "Starts at
+   6:01 PM" on the late fee was wrong on early-release days. A note like "Served 2:15 PM" on the
+   lunch menu disagreed with the schedule. Notes should describe, and times live in hours, the
+   schedule or facts. (`kb_lint.py` only checks policies and FAQs today. Checking table notes is a
+   follow-up.)
+5. **Never type a value that has a home.** A literal "$75" or "(505) 555-0124" in a policy is a
    bug, even if it's correct today.
-5. **Keys are stable.** A key (`registration`, `nurse`, `fever_threshold`) is chosen once when
+6. **Keys are stable.** A key (`registration`, `nurse`, `fever_threshold`) is chosen once when
    the row is created and never renamed. Deleting a row that a policy uses is blocked.
    - *POC assumption:* the code enforces uniqueness, immutability and in-use checks.
      Deleting a row and re-adding it under a new key is not prevented.
@@ -83,6 +88,11 @@ An auto-fix is applied only if **all** of these hold:
 3. **Reversible and attributed:** the fix goes through the normal admin write path and is recorded
    in `audit_log` as `admin_name = "kb-maintenance-agent"` with before/after values, so an admin
    can see and revert it.
+
+**AI issues are never closed automatically either.** AI findings vary between runs, so "not found
+this time" doesn't mean fixed. In Phase 3 testing, a real conflict that appeared in one run and not
+the next was being silently closed. Only rule-based issues close themselves when they stop
+occurring; AI issues stay open until an admin resolves or dismisses them.
 
 Model-suggested changes are **never** applied automatically. They become queue items with the
 suggestion attached, and an admin accepts, edits or dismisses them.

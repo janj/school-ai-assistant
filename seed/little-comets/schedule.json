@@ -14,13 +14,13 @@
   {
     "age_group": "All",
     "start_time": "12:30",
-    "end_time": "13:00",
+    "end_time": "12:40",
     "activity": "Part-day pick-up"
   },
   {
     "age_group": "All",
     "start_time": "15:30",
-    "end_time": "15:45",
+    "end_time": "15:40",
     "activity": "Full-day pick-up"
   },
   {
@@ -147,7 +147,7 @@
     "age_group": "Rocket Room (ages 4-5)",
     "start_time": "12:00",
     "end_time": "12:30",
-    "activity": "Show and tell and goodbye circle"
+    "activity": "Goodbye circle (show and tell on Fridays)"
   },
   {
     "age_group": "Rocket Room (ages 4-5)",

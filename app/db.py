@@ -57,6 +57,17 @@ def init_db() -> None:
     for slug in seed_slugs():
         if slug not in existing or slug in reseed:
             load_seed(slug)
+    _sync_themes()
+
+
+def _sync_themes() -> None:
+    """Themes aren't admin-editable, so seed/<slug>/center.json is their only source: re-apply on
+    every start so theme changes ship with a deploy (other center fields keep admin edits)."""
+    with connect() as conn:
+        for slug in seed_slugs():
+            center = json.loads((config.SEED_DIR / slug / "center.json").read_text())
+            conn.execute("UPDATE centers SET theme_json = ? WHERE slug = ?",
+                         (json.dumps(center.get("theme", {})), center["slug"]))
 
 
 def _migrate(conn) -> set[str]:

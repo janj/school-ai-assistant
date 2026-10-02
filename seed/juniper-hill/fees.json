@@ -61,7 +61,7 @@
     "name": "Late pickup fee",
     "amount_cents": 200,
     "period": "per minute",
-    "notes": "Starts at 6:01 PM. Billed on the next monthly invoice."
+    "notes": "Starts the first minute after closing, including on early release days. Billed on the next monthly invoice."
   },
   {
     "key": "returned_payment",

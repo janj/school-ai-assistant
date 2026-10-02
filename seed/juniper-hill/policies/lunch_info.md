@@ -1,7 +1,7 @@
 # Meals, Allergies and Outside Food
 
 ## Meals are included
-Juniper Hill's own kitchen, run by Food Service Manager {{contact:kitchen}}, prepares **breakfast, lunch and a PM snack** every day. They are included in tuition. The menu follows the federal child nutrition guidelines and is posted weekly outside each room.
+Juniper Hill's own kitchen, run by Food Service Manager {{contact:kitchen}}, prepares **breakfast, lunch and a PM snack** every day. They are included in tuition. The menu follows the federal child nutrition guidelines and is posted outside each room (see Lunch menu for how it repeats and when it is updated).
 
 ## Infants
 Families provide formula or breast milk in labeled bottles. The center provides baby food and iron-fortified cereal once the baby has tried each food at home first.

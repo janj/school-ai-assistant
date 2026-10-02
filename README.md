@@ -19,6 +19,12 @@ what, and review every question asked. It is a prototype, with two made-up cente
 - **Q/A logs with personal info removed.** Admins see their own center's questions and answers,
   with an "unanswered" filter. Personal details are removed before anything is stored, and IPs
   are never stored.
+- **Follow-up questions** keep context ("and on early release days?"), with no history stored.
+- **One home per fact.** Policies use placeholders such as `{{fee:registration}}`, so editing a fee
+  updates every policy that mentions it.
+- **Admin queues.** Unanswered questions become FAQ entries in one step, and a maintenance agent
+  flags conflicting or duplicated data. It fixes only provably safe cases itself.
+- **Per-center themes** and **voice**: talk to ask, and answers can be read aloud.
 - **Per-IP limits** on request count and token use, kept in memory only.
 - Mobile-first UI, themed per center. Deployed by hand to a DigitalOcean droplet.
 

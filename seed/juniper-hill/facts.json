@@ -1,5 +1,11 @@
 [
   {
+    "key": "arrival_cutoff",
+    "label": "Latest arrival time without calling ahead",
+    "value": "9:00 AM",
+    "notes": "Later arrivals must call or message the front desk by this time"
+  },
+  {
     "key": "fever_threshold",
     "label": "Fever threshold (stay home)",
     "value": "100.4°F (38.0°C) or higher",

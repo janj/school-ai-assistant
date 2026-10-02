@@ -46,3 +46,11 @@ kind + section (+ ordinal when one section has several).
 - Added `auto-fixes` as a fourth route; the brief's three routes can't list the agent's edits cheaply.
 - Schedule is documented in `KNOWLEDGE_MAINTENANCE.md` only. Nothing installs cron.
 - Cost seen on the seeds: about 8.5k cached input tokens plus about 1.2-1.7k output per center per AI run.
+
+## Changes at integration (Phase 3)
+- **AI issues are never auto-resolved.** AI findings vary between runs. Originally an AI issue
+  missing from a later run was closed as fixed, which silently closed real conflicts. Now only
+  rule-based issues close themselves; AI issues wait for an admin.
+- **AI issue fingerprints are based on content** (kind + section + normalized detail), not kind +
+  section + position. Before, a different finding in the same section would overwrite an earlier
+  one. Rewordings may show up as near-duplicates; admins dismiss those.

@@ -245,16 +245,16 @@ parallel Phase 3 tracks start, the same way as Phase 0.
 - Deleting a fee that is in use returns 409.
 - Changing a key returns 400.
 
-### Phase 3 — Nice-to-haves (parallel Sonnet tracks)
+### Phase 3 — Nice-to-haves (parallel Sonnet tracks)  `merged`
 
 | Track | Scope | Owns | Status |
 |---|---|---|---|
-| **G · Conversation context** | Client-minted `conversation_id`; raw history kept **in memory only** (30-min idle window, last 4 turns, 8-turn cap); Haiku rewrites follow-up questions | `chat.py`, `app/history.py`, `chat.js` thread state | active |
-| **H · Unanswered → KB** | Logs tab action "answer this" creates a `faq` row that is shown in the KB; changes go to the audit log | `routes/admin_logs.py`, `admin/logs.js` (`kb.py` already renders FAQs) | active |
-| **I · Center themes** | `theme_json` → CSS variables, logo/wordmark, favicon per center | `static/theme.js`, `base.css`, `chat.css`, seed `theme` objects | active |
-| **J · Voice** | Web Speech API mic input + optional read-aloud, with feature detection | `static/voice.js` + the one hook line in `chat.js` | active |
+| **G · Conversation context** | Client-minted `conversation_id`; raw history kept **in memory only** (30-min idle window, last 4 turns, 8-turn cap); Haiku rewrites follow-up questions | `chat.py`, `app/history.py`, `chat.js` thread state | merged |
+| **H · Unanswered → KB** | Logs tab action "answer this" creates a `faq` row that is shown in the KB; changes go to the audit log | `routes/admin_logs.py`, `admin/logs.js` (`kb.py` already renders FAQs) | merged |
+| **I · Center themes** | `theme_json` → CSS variables, logo/wordmark, favicon per center | `static/theme.js`, `base.css`, `chat.css`, seed `theme` objects | merged |
+| **J · Voice** | Web Speech API mic input + optional read-aloud, with feature detection | `static/voice.js` + the one hook line in `chat.js` | merged |
 
-| **K · Knowledge maintenance agent** | Scheduled and on-demand agent. It fixes clear-cut issues itself and files everything else in a "Data issues" review queue. Spec: [KNOWLEDGE_MAINTENANCE.md](KNOWLEDGE_MAINTENANCE.md) §3 | `app/maintenance.py`, `scripts/maintain_kb.py`, `kb_issues` table, `static/admin/issues.js`. The cron schedule is **documented only, not installed** (operator decision) | active |
+| **K · Knowledge maintenance agent** | Scheduled and on-demand agent. It fixes clear-cut issues itself and files everything else in a "Data issues" review queue. Spec: [KNOWLEDGE_MAINTENANCE.md](KNOWLEDGE_MAINTENANCE.md) §3 | `app/maintenance.py`, `scripts/maintain_kb.py`, `kb_issues` table, `static/admin/issues.js`. The cron schedule is **documented only, not installed** (operator decision) | merged |
 
 - All Phase 3 tracks start after Phase 3.0 merges.
 - G and J both touch `chat.js`. J only adds a hook that Phase 0 or G defines, so G merges first.
@@ -273,4 +273,13 @@ parallel Phase 3 tracks start, the same way as Phase 0.
 ## 7. Open items
 
 - [x] Droplet created and bootstrapped: 162.243.171.212 → https://162-243-171-212.sslip.io
-- [ ] Confirm the DO Cloud Firewall allows 80/443 (verified on first deploy).
+- [x] Confirm the DO Cloud Firewall allows 80/443 (verified on first deploy).
+
+## 8. Follow-ups (not started)
+- **Match facts by context** (from the "24 hours" discussion). Have the maintenance agent's AI
+  check decide which fact a value belongs to (Haiku picks a fact, then a "would this sentence
+  change?" test), turning possible duplicates into one-click suggestions. Record admin
+  accept/reject decisions, and promote a class to auto-fix only after a high acceptance rate.
+- **Lint table notes and names**, not just policies and FAQs (KNOWLEDGE_MAINTENANCE §2, rule 4).
+- **Center main phone/email** duplicate the front-desk directory row. Let the center row refer to
+  a contact key.
