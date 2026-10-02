@@ -20,7 +20,11 @@ same time, on other branches.
 6. **Style:** Python 3.12, standard library first, small modules, comments only where the reason
    isn't obvious. Plain JS ES modules, no build step, no frameworks, no CDN dependencies unless
    your brief allows one.
-7. **Deliverables:**
+7. **Shared browser:** several agents share one browser, and cookies are per host, not per
+   port. So other agents' sessions will overwrite yours on `localhost`. Use
+   `http://127.0.0.1:<your port>`, prefer `curl` with your own cookie jar for API checks, and
+   re-create your session right before any browser check.
+8. **Deliverables:**
    - Commits on your branch.
    - `docs/features/<your-track>.md`: what it does, how it works, the decisions made and why.
      Under 1 page.

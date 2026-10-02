@@ -249,12 +249,12 @@ parallel Phase 3 tracks start, the same way as Phase 0.
 
 | Track | Scope | Owns | Status |
 |---|---|---|---|
-| **G · Conversation context** | Client-minted `conversation_id`; raw history kept **in memory only** (30-min idle window, last 4 turns, 8-turn cap); Haiku rewrites follow-up questions | `chat.py` history section, `chat.js` thread state | todo |
-| **H · Unanswered → KB** | Logs tab action "answer this" creates a `faq` row that is shown in the KB; changes go to the audit log | `admin/logs.js`, `faq` rendering in `kb.py` | todo |
-| **I · Center themes** | `theme_json` → CSS variables, logo/wordmark, favicon per center | `base.css`, a theme loader | todo |
-| **J · Voice** | Web Speech API mic input + optional read-aloud, with feature detection | `static/voice.js` + one hook in `chat.js` | todo |
+| **G · Conversation context** | Client-minted `conversation_id`; raw history kept **in memory only** (30-min idle window, last 4 turns, 8-turn cap); Haiku rewrites follow-up questions | `chat.py`, `app/history.py`, `chat.js` thread state | active |
+| **H · Unanswered → KB** | Logs tab action "answer this" creates a `faq` row that is shown in the KB; changes go to the audit log | `routes/admin_logs.py`, `admin/logs.js` (`kb.py` already renders FAQs) | active |
+| **I · Center themes** | `theme_json` → CSS variables, logo/wordmark, favicon per center | `static/theme.js`, `base.css`, `chat.css`, seed `theme` objects | active |
+| **J · Voice** | Web Speech API mic input + optional read-aloud, with feature detection | `static/voice.js` + the one hook line in `chat.js` | active |
 
-| **K · Knowledge maintenance agent** | Scheduled and on-demand agent. It fixes clear-cut issues itself and files everything else in a "Data issues" review queue. Spec: [KNOWLEDGE_MAINTENANCE.md](KNOWLEDGE_MAINTENANCE.md) §3 | `app/maintenance.py`, `scripts/maintain_kb.py`, `kb_issues` table, `static/admin/issues.js`. The cron schedule is **documented only, not installed** (operator decision) | todo |
+| **K · Knowledge maintenance agent** | Scheduled and on-demand agent. It fixes clear-cut issues itself and files everything else in a "Data issues" review queue. Spec: [KNOWLEDGE_MAINTENANCE.md](KNOWLEDGE_MAINTENANCE.md) §3 | `app/maintenance.py`, `scripts/maintain_kb.py`, `kb_issues` table, `static/admin/issues.js`. The cron schedule is **documented only, not installed** (operator decision) | active |
 
 - All Phase 3 tracks start after Phase 3.0 merges.
 - G and J both touch `chat.js`. J only adds a hook that Phase 0 or G defines, so G merges first.
