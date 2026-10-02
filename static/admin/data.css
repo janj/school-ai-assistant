@@ -1,0 +1,93 @@
+/* Admin data editor + history. Uses the base.css tokens only. */
+
+.dx button, .dx input, .dx select, .dx textarea { font: inherit; color: var(--text); }
+.dx-btn { min-height: 40px; padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border);
+          background: var(--surface); cursor: pointer; }
+.dx-btn.primary { background: var(--brand-primary); border-color: var(--brand-primary); color: #fff; }
+.dx-btn.danger { border-color: var(--danger); color: var(--danger); }
+.dx-btn.danger.solid { background: var(--danger); color: #fff; }
+.dx-btn:disabled { opacity: .5; cursor: default; }
+.dx-muted { color: var(--text-muted); }
+.dx-error { color: var(--danger); margin: 8px 0; }
+.dx-ok { color: var(--ok); margin: 8px 0; }
+
+/* layout: select on mobile, side list on desktop */
+.dx-layout { display: block; }
+.dx-picker select { width: 100%; min-height: 44px; padding: 8px; border-radius: 8px;
+                    border: 1px solid var(--border); background: var(--surface); margin-bottom: var(--space); }
+.dx-side { display: none; }
+.dx-main { min-width: 0; }
+@media (min-width: 760px) {
+  .dx-layout { display: grid; grid-template-columns: 200px 1fr; gap: 24px; align-items: start; }
+  .dx-picker select { display: none; }
+  .dx-side { display: flex; flex-direction: column; gap: 2px; }
+  .dx-side button { text-align: left; border: 0; background: none; padding: 10px 12px; border-radius: 8px;
+                    cursor: pointer; }
+  .dx-side button[aria-current="true"] { background: var(--surface); font-weight: 600;
+                                         box-shadow: inset 3px 0 0 var(--brand-primary); }
+}
+
+.dx-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 12px; }
+.dx-head h2 { margin: 0; font-size: 1.15rem; }
+
+/* rows: cards on mobile, table on desktop */
+.dx-table { display: none; width: 100%; border-collapse: collapse; background: var(--surface);
+            border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.dx-table th, .dx-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); text-align: left;
+                             vertical-align: top; overflow-wrap: anywhere; }
+.dx-table th { font-size: .8rem; color: var(--text-muted); font-weight: 600; }
+.dx-table td.act { white-space: nowrap; width: 1%; }
+.dx-cards { display: flex; flex-direction: column; gap: 10px; }
+.dx-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+           padding: 12px; }
+.dx-card dl { margin: 0 0 10px; display: grid; grid-template-columns: 90px 1fr; gap: 4px 10px; }
+.dx-card dt { color: var(--text-muted); font-size: .85rem; }
+.dx-card dd { margin: 0; overflow-wrap: anywhere; white-space: pre-wrap; }
+.dx-card .act { display: flex; gap: 8px; }
+.dx-cell-long { white-space: pre-wrap; max-height: 6.5em; overflow: hidden; }
+@media (min-width: 760px) {
+  .dx-table { display: table; }
+  .dx-cards { display: none; }
+}
+
+/* form */
+.dx-form { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+           padding: var(--space); display: flex; flex-direction: column; gap: 14px; }
+.dx-form label { display: flex; flex-direction: column; gap: 4px; font-size: .9rem; }
+.dx-form .req::after { content: " *"; color: var(--danger); }
+.dx-form input, .dx-form textarea, .dx-form select { width: 100%; min-height: 40px; padding: 8px;
+  border-radius: 8px; border: 1px solid var(--border); background: var(--brand-bg); }
+.dx-form textarea { min-height: 110px; resize: vertical; }
+.dx-form .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.dx-md-tabs { display: flex; gap: 6px; }
+.dx-md-tabs button { min-height: 32px; padding: 2px 10px; border-radius: 6px; border: 1px solid var(--border);
+                     background: none; cursor: pointer; }
+.dx-md-tabs button[aria-pressed="true"] { background: var(--brand-bg); font-weight: 600; }
+.dx-preview { border: 1px dashed var(--border); border-radius: 8px; padding: 8px 12px; min-height: 110px; }
+.dx-preview h1, .dx-preview h2, .dx-preview h3 { font-size: 1.05rem; margin: .6em 0 .3em; }
+.dx-preview p, .dx-preview ul { margin: .4em 0; }
+
+/* delete confirm + reset */
+.dx-confirm { border: 1px solid var(--danger); border-radius: 8px; padding: 10px; margin-top: 8px;
+              display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.dx-danger-zone { margin-top: 32px; border: 1px solid var(--danger); border-radius: var(--radius);
+                  padding: var(--space); }
+.dx-danger-zone h3 { margin: 0 0 6px; color: var(--danger); font-size: 1rem; }
+.dx-danger-zone input { min-height: 40px; padding: 8px; border-radius: 8px; border: 1px solid var(--border);
+                        background: var(--brand-bg); width: 100%; max-width: 220px; }
+
+/* history */
+.dx-hist { display: flex; flex-direction: column; gap: 8px; }
+.dx-hist details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.dx-hist summary { cursor: pointer; padding: 10px 12px; display: flex; flex-wrap: wrap; gap: 4px 10px;
+                   align-items: baseline; min-height: 44px; }
+.dx-badge { font-size: .75rem; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--border);
+            text-transform: uppercase; letter-spacing: .03em; }
+.dx-badge.create { color: var(--ok); border-color: var(--ok); }
+.dx-badge.delete, .dx-badge.reset { color: var(--danger); border-color: var(--danger); }
+.dx-diff { padding: 0 12px 12px; display: grid; gap: 8px; }
+.dx-diff .field { font-size: .85rem; color: var(--text-muted); }
+.dx-diff .before, .dx-diff .after { padding: 4px 8px; border-radius: 6px; white-space: pre-wrap;
+                                    overflow-wrap: anywhere; }
+.dx-diff .before { background: color-mix(in srgb, var(--danger) 14%, transparent); }
+.dx-diff .after { background: color-mix(in srgb, var(--ok) 16%, transparent); }
