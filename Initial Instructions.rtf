@@ -1,0 +1,74 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2870
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww16500\viewh12200\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Goal: \
+- Create an interactive chat client backed by AI that provides the user information about the school they are associated with. If the user is an admin they are able to edit and add to the information.\
+- I want this live and hosted on my droplet, deployable from a new GitHub repository similar to the Civic Mined structure.\
+\
+\
+Requirements:\
+- We will mock a user session, when a new user arrives at the page we will provide a UI that enables them to choose admin or parent account and which center they are associated with. All followup UI should include a way for the current user to reset their user session settings and start over.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 - Admins can change/update/add to the underlying data\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 - Mobile friendly\
+- Each IP should get a request count limit and token budget.\
+- Once a center is selected sessions will be locked to that center. We will segment answers by center similar to how that is done with Civci Mined even if the underlying data store is different.\
+- Nothing can be made up, all answers must come from available information, if an answer is not found that must be stated and user should be provided an actual phone number or email if available.\
+- The underlying data store can be tables or markdown files or a combination of whatever makes sense to support the expected queries and center query separation, I want the choices to be justified. We can support structured and unstructured data.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 - We should log all questions/answers so we can verify and iterate/refine where needed but strip PII. Admins should be able to see these logs.\
+- Documentation, see below\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\
+Non-requirements:\
+- This is a non-production prototype, POC, we do not need tests\
+\
+\
+\
+Implementation Process:\
+We have a document that can be used as inspiration for seed data. We do not want to use this actual data, we will make up two sets of seed data. The data I want to support for this POC is:\
+- directory information, position, name and phone number\
+- daily schedules\
+- hours of operation\
+- closure dates\
+- late arrival/pickup policy\
+- permissible items from home\
+- information related to new enrollment\
+- fee information\
+- lunch schedule and information\
+- birthday policy\
+- criteria for keeping kids at home\
+{\field{\*\fldinst{HYPERLINK "https://www.cabq.gov/family/documents/2019-division-of-child-and-family-development-family-handbook-final.pdf"}}{\fldrslt https://www.cabq.gov/family/documents/2019-division-of-child-and-family-development-family-handbook-final.pdf}}\
+Before starting implementation I want to clarify any ambiguities and formalize goals in a new phased process document which can be used to farm out and track process for parallel tracks. We will have a prioritized set of features starting with the most basic end-to-end implementation and work down from that.\
+I will provide a Claude token to use in the root directory.\
+I want all of the parrallizable tracks identified and farmed out to Sonnet subagents with very clear tasks. Shared boundaries should be defined before starting when needed.\
+Subagent work will be done on worktrees, separate branches, summary of changes, reviewed by us before merging. \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 We can include school data in the prompt if the token size allows it, and we should use prompt caching.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\
+Nice To Haves:\
+The UI should reflect the look of the center, custom style to match center theme\
+Voice support\
+Keep track of which admin made which changes\
+Answer in the language the question was asked in.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 Session context should be maintained similar to how we do with Civic Mined so the user has a connected flowing experience instead of a disjointed experience. We can rewrite followup queries where needed.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 Admins can see questions that were not answered and provide answers to add to the knowledge base.\
+\
+\
+Documentation:\
+A ReadMe is required at the root, 1 page, explains what is provided and how it is implemented.\
+I want to maintain a docs folder similar to what I have for Civic Mined where project architecture is defined and feature docs are maintained\
+\
+\
+\
+}

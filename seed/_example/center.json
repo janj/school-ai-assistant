@@ -1,0 +1,10 @@
+{
+  "slug": "example-center",
+  "name": "Example Learning Center",
+  "tagline": "Placeholder used until Track A seeds real centers",
+  "address": "100 Example St, Exampletown, NM 87000",
+  "main_phone": "(505) 555-0100",
+  "main_email": "office@example-center.test",
+  "website": null,
+  "theme": {"primary": "#2f6f4f", "accent": "#f2b134", "background": "#fbfaf6", "font": "system-ui", "logo_text": "ELC"}
+}

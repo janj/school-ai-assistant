@@ -151,7 +151,7 @@ one, so `db.load_seed(slug)` stays a plain loader.
 
 ## 5. Phases and tracks
 
-### Phase 0 — Foundations (operator + Opus, serial)  `todo`
+### Phase 0 — Foundations (operator + Opus, serial)  `merged`
 Create the repo; add `.gitignore` (done); create the skeleton in §4.1 with stubs; write
 `schema.sql`, `CONTRACTS.md`, session handling, `registry.py` metadata, the `base.css` token
 names and the admin tab shell. **Exit:** the app runs locally, you can pick a session, and
@@ -161,14 +161,14 @@ names and the admin tab shell. **Exit:** the app runs locally, you can pick a se
 
 | Track | Scope | Depends on | Status |
 |---|---|---|---|
-| **A · Seed data** | Two made-up centers covering all 11 topics. They must differ clearly (hours, fees, policies). Include `eval_questions.md` per center: ~20 questions with expected answers, plus ~5 that the data can't answer | P0 | todo |
-| **B · Chat backend** | `kb.py` rendering with section IDs; `chat.py` with Sonnet, two cache breakpoints (rules, KB), structured output, source checking, server-added contact on `found=false`, answer in the question's language; `limits.py` (defaults: 20 req / 5 min, 60k tokens / 10 min, 300k tokens / day per IP; settable by env) | P0 (can use A's seed when ready) | todo |
-| **C · Frontend** | Picker (role + center + admin name), chat UI (message bubbles, sources shown as chips, not-found contact card, error states per §4.4), reset control on every view, mobile-first layout | P0 | todo |
-| **D · Admin data editor** | Generic CRUD driven by `registry.py` (tables and markdown policies), `audit_log` written on every change, History tab, "reset center to seed" with a confirm step | P0 | todo |
-| **E · Q/A logging** | `log_turn`, PII scrub (regex for phones/emails, then Haiku for people's names; staff names from the directory are kept), Logs tab filtered by center with an "unanswered only" filter | P0 | todo |
-| **F · Deploy** | Dockerfile, compose (app + Caddy, SQLite on a volume), Caddyfile, `deploy.sh` run by hand from this machine, `docs/DEPLOY.md` covering droplet setup from scratch | P0, §7 answers | todo |
+| **A · Seed data** | Two made-up centers covering all 11 topics. They must differ clearly (hours, fees, policies). Include `eval_questions.md` per center: ~20 questions with expected answers, plus ~5 that the data can't answer | P0 | active |
+| **B · Chat backend** | `kb.py` rendering with section IDs; `chat.py` with Sonnet, two cache breakpoints (rules, KB), structured output, source checking, server-added contact on `found=false`, answer in the question's language; `limits.py` (defaults: 20 req / 5 min, 60k tokens / 10 min, 300k tokens / day per IP; settable by env) | P0 (can use A's seed when ready) | active |
+| **C · Frontend** | Picker (role + center + admin name), chat UI (message bubbles, sources shown as chips, not-found contact card, error states per §4.4), reset control on every view, mobile-first layout | P0 | active |
+| **D · Admin data editor** | Generic CRUD driven by `registry.py` (tables and markdown policies), `audit_log` written on every change, History tab, "reset center to seed" with a confirm step | P0 | active |
+| **E · Q/A logging** | `log_turn`, PII scrub (regex for phones/emails, then Haiku for people's names; staff names from the directory are kept), Logs tab filtered by center with an "unanswered only" filter | P0 | active |
+| **F · Deploy** | Dockerfile, compose (app + Caddy, SQLite on a volume), Caddyfile, `deploy.sh` run by hand from this machine, `docs/DEPLOY.md` covering droplet setup from scratch | P0 | active |
 
-Each track's deliverable: its branch, a feature doc at `docs/features/<track>.md`, and a summary
+Track briefs: `docs/tracks/` (start with `_common.md`). Each track's deliverable: its branch, a feature doc at `docs/features/<track>.md`, and a summary
 (what changed, decisions made, anything left open). **Tracks touch only files they own.**
 
 ### Phase 2 — Integrate and ship (operator + Opus)  `todo`
