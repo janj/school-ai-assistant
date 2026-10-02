@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Nadia Castellanos",
+    "position": "Owner and Director",
+    "phone": "(505) 555-0161",
+    "email": "nadia@littlecomets.test",
+    "sort_order": 1
+  },
+  {
+    "name": "Front Desk",
+    "position": "Office and Parent Questions",
+    "phone": "(505) 555-0160",
+    "email": "hello@littlecomets.test",
+    "sort_order": 2
+  },
+  {
+    "name": "Owen Takahashi",
+    "position": "Enrollment and Tours",
+    "phone": "(505) 555-0162",
+    "email": "enroll@littlecomets.test",
+    "sort_order": 3
+  },
+  {
+    "name": "Beatrice Lang",
+    "position": "Lead Teacher, Moon Room (ages 2-3)",
+    "phone": "(505) 555-0163",
+    "email": "moon@littlecomets.test",
+    "sort_order": 4
+  },
+  {
+    "name": "Felix Ndiaye",
+    "position": "Lead Teacher, Star Room (ages 3-4)",
+    "phone": "(505) 555-0164",
+    "email": "star@littlecomets.test",
+    "sort_order": 5
+  },
+  {
+    "name": "Greta Sorensen",
+    "position": "Lead Teacher, Rocket Room (ages 4-5)",
+    "phone": "(505) 555-0165",
+    "email": "rocket@littlecomets.test",
+    "sort_order": 6
+  },
+  {
+    "name": "Nadia Castellanos",
+    "position": "Health and Safety Officer (illness questions)",
+    "phone": "(505) 555-0161",
+    "email": "nadia@littlecomets.test",
+    "sort_order": 7
+  },
+  {
+    "name": "Pilar Duarte",
+    "position": "Snack Coordinator (allergies and snack menu)",
+    "phone": "(505) 555-0166",
+    "email": "snacks@littlecomets.test",
+    "sort_order": 8
+  }
+]

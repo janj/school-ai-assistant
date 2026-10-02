@@ -1,0 +1,86 @@
+[
+  {
+    "start_date": "2026-08-14",
+    "end_date": null,
+    "name": "Staff training day",
+    "notes": "Closed for staff orientation before the school year."
+  },
+  {
+    "start_date": "2026-09-07",
+    "end_date": null,
+    "name": "Labor Day",
+    "notes": null
+  },
+  {
+    "start_date": "2026-10-12",
+    "end_date": null,
+    "name": "Indigenous Peoples' Day",
+    "notes": null
+  },
+  {
+    "start_date": "2026-10-30",
+    "end_date": null,
+    "name": "Staff training day",
+    "notes": "No care."
+  },
+  {
+    "start_date": "2026-11-11",
+    "end_date": null,
+    "name": "Veterans Day",
+    "notes": null
+  },
+  {
+    "start_date": "2026-11-25",
+    "end_date": "2026-11-27",
+    "name": "Thanksgiving break",
+    "notes": "Closed Wednesday through Friday."
+  },
+  {
+    "start_date": "2026-12-21",
+    "end_date": "2027-01-01",
+    "name": "Winter break",
+    "notes": "Closed 12/21 through 1/1; reopens Monday 1/4/2027."
+  },
+  {
+    "start_date": "2027-01-18",
+    "end_date": null,
+    "name": "Martin Luther King Jr. Day",
+    "notes": null
+  },
+  {
+    "start_date": "2027-02-15",
+    "end_date": null,
+    "name": "Presidents' Day",
+    "notes": null
+  },
+  {
+    "start_date": "2027-03-12",
+    "end_date": null,
+    "name": "Staff training day",
+    "notes": "Teacher professional development; no care."
+  },
+  {
+    "start_date": "2027-04-02",
+    "end_date": null,
+    "name": "Spring staff training day",
+    "notes": "No care."
+  },
+  {
+    "start_date": "2027-05-31",
+    "end_date": null,
+    "name": "Memorial Day",
+    "notes": null
+  },
+  {
+    "start_date": "2027-06-18",
+    "end_date": null,
+    "name": "Juneteenth observed",
+    "notes": null
+  },
+  {
+    "start_date": "2027-07-05",
+    "end_date": null,
+    "name": "Independence Day observed",
+    "notes": null
+  }
+]

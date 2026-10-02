@@ -1,0 +1,170 @@
+[
+  {
+    "age_group": "All",
+    "start_time": "07:30",
+    "end_time": "08:30",
+    "activity": "Extended care arrival: quiet play and puzzles (extended care families only)"
+  },
+  {
+    "age_group": "All",
+    "start_time": "08:30",
+    "end_time": "09:00",
+    "activity": "Arrival, cubbies and free choice"
+  },
+  {
+    "age_group": "All",
+    "start_time": "12:30",
+    "end_time": "13:00",
+    "activity": "Part-day pick-up"
+  },
+  {
+    "age_group": "All",
+    "start_time": "15:30",
+    "end_time": "15:45",
+    "activity": "Full-day pick-up"
+  },
+  {
+    "age_group": "Moon Room (ages 2-3)",
+    "start_time": "09:00",
+    "end_time": "09:30",
+    "activity": "Circle time and songs"
+  },
+  {
+    "age_group": "Moon Room (ages 2-3)",
+    "start_time": "09:30",
+    "end_time": "10:00",
+    "activity": "Snack (provided by the center)"
+  },
+  {
+    "age_group": "Moon Room (ages 2-3)",
+    "start_time": "10:00",
+    "end_time": "11:00",
+    "activity": "Play-based learning centers and art"
+  },
+  {
+    "age_group": "Moon Room (ages 2-3)",
+    "start_time": "11:00",
+    "end_time": "11:45",
+    "activity": "Outdoor play"
+  },
+  {
+    "age_group": "Moon Room (ages 2-3)",
+    "start_time": "11:45",
+    "end_time": "12:30",
+    "activity": "Story and goodbye circle"
+  },
+  {
+    "age_group": "Moon Room (ages 2-3)",
+    "start_time": "12:30",
+    "end_time": "13:00",
+    "activity": "Lunch (packed from home, full-day only)"
+  },
+  {
+    "age_group": "Moon Room (ages 2-3)",
+    "start_time": "13:00",
+    "end_time": "14:30",
+    "activity": "Rest time"
+  },
+  {
+    "age_group": "Moon Room (ages 2-3)",
+    "start_time": "14:30",
+    "end_time": "15:30",
+    "activity": "Music, movement and outdoor play"
+  },
+  {
+    "age_group": "Star Room (ages 3-4)",
+    "start_time": "09:00",
+    "end_time": "09:30",
+    "activity": "Circle time and calendar"
+  },
+  {
+    "age_group": "Star Room (ages 3-4)",
+    "start_time": "09:30",
+    "end_time": "10:00",
+    "activity": "Snack (provided by the center)"
+  },
+  {
+    "age_group": "Star Room (ages 3-4)",
+    "start_time": "10:00",
+    "end_time": "11:00",
+    "activity": "Learning centers: letters, counting, science"
+  },
+  {
+    "age_group": "Star Room (ages 3-4)",
+    "start_time": "11:00",
+    "end_time": "11:45",
+    "activity": "Outdoor play"
+  },
+  {
+    "age_group": "Star Room (ages 3-4)",
+    "start_time": "11:45",
+    "end_time": "12:30",
+    "activity": "Story and goodbye circle"
+  },
+  {
+    "age_group": "Star Room (ages 3-4)",
+    "start_time": "12:30",
+    "end_time": "13:00",
+    "activity": "Lunch (packed from home, full-day only)"
+  },
+  {
+    "age_group": "Star Room (ages 3-4)",
+    "start_time": "13:00",
+    "end_time": "14:00",
+    "activity": "Rest time"
+  },
+  {
+    "age_group": "Star Room (ages 3-4)",
+    "start_time": "14:00",
+    "end_time": "15:30",
+    "activity": "Projects, music and outdoor play"
+  },
+  {
+    "age_group": "Rocket Room (ages 4-5)",
+    "start_time": "09:00",
+    "end_time": "09:30",
+    "activity": "Morning meeting"
+  },
+  {
+    "age_group": "Rocket Room (ages 4-5)",
+    "start_time": "09:30",
+    "end_time": "10:00",
+    "activity": "Snack (provided by the center)"
+  },
+  {
+    "age_group": "Rocket Room (ages 4-5)",
+    "start_time": "10:00",
+    "end_time": "11:15",
+    "activity": "Kindergarten-readiness lessons and centers"
+  },
+  {
+    "age_group": "Rocket Room (ages 4-5)",
+    "start_time": "11:15",
+    "end_time": "12:00",
+    "activity": "Outdoor play"
+  },
+  {
+    "age_group": "Rocket Room (ages 4-5)",
+    "start_time": "12:00",
+    "end_time": "12:30",
+    "activity": "Show and tell and goodbye circle"
+  },
+  {
+    "age_group": "Rocket Room (ages 4-5)",
+    "start_time": "12:30",
+    "end_time": "13:00",
+    "activity": "Lunch (packed from home, full-day only)"
+  },
+  {
+    "age_group": "Rocket Room (ages 4-5)",
+    "start_time": "13:00",
+    "end_time": "13:45",
+    "activity": "Quiet time"
+  },
+  {
+    "age_group": "Rocket Room (ages 4-5)",
+    "start_time": "13:45",
+    "end_time": "15:30",
+    "activity": "Science, art, games and outdoor play"
+  }
+]

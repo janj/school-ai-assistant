@@ -1,0 +1,16 @@
+{
+  "slug": "little-comets",
+  "name": "Little Comets Preschool",
+  "tagline": "Small classes, big imaginations",
+  "address": "48 Orbit Lane, Starfield, NM 87144",
+  "main_phone": "(505) 555-0160",
+  "main_email": "hello@littlecomets.test",
+  "website": "https://www.littlecomets.test",
+  "theme": {
+    "primary": "#14284b",
+    "accent": "#ffc933",
+    "background": "#f3f6fc",
+    "font": "'Trebuchet MS', 'Helvetica Neue', sans-serif",
+    "logo_text": "LC"
+  }
+}
