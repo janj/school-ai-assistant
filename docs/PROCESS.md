@@ -276,6 +276,11 @@ parallel Phase 3 tracks start, the same way as Phase 0.
 - [x] Confirm the DO Cloud Firewall allows 80/443 (verified on first deploy).
 
 ## 8. Follow-ups (not started)
+- **Provenance for all data** ([proposals/PROVENANCE.md](proposals/PROVENANCE.md)): record where
+  every value comes from and when it was last verified. Higher priority than the import agent,
+  which depends on it.
+- **Center import agent** ([proposals/CENTER_IMPORT_AGENT.md](proposals/CENTER_IMPORT_AGENT.md)):
+  website URL → draft center with evidence for every value, then review and publish.
 - **Match facts by context** (from the "24 hours" discussion). Have the maintenance agent's AI
   check decide which fact a value belongs to (Haiku picks a fact, then a "would this sentence
   change?" test), turning possible duplicates into one-click suggestions. Record admin
