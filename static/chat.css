@@ -1,0 +1,72 @@
+/* Picker + chat. Colors come from the tokens in base.css; --on-primary is set by chat.js for contrast. */
+:root { --on-primary: #fff; }
+html, body { height: 100%; }
+body { overflow-x: hidden; }
+[hidden] { display: none !important; }
+.loading { padding: var(--space); color: var(--text-muted); }
+.btn { min-height: 44px; padding: 0 16px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); }
+.btn.primary { background: var(--brand-primary); color: var(--on-primary); border-color: transparent; font-weight: 600; }
+.btn:disabled { opacity: .55; cursor: not-allowed; }
+
+/* Picker */
+.picker { max-width: 720px; margin: 0 auto; padding: calc(var(--space) * 1.5) var(--space) 48px; }
+.picker h1 { margin: 0 0 4px; font-size: 1.6rem; }
+.picker h2 { font-size: 1.05rem; margin: 24px 0 8px; }
+.muted { color: var(--text-muted); }
+.cards { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.card-opt { text-align: left; padding: var(--space); border-radius: var(--radius); border: 2px solid var(--border);
+  border-left: 8px solid var(--tint, var(--brand-primary)); background: var(--surface); min-height: 72px; }
+.card-opt[aria-checked="true"] { border-color: var(--tint, var(--brand-primary)); box-shadow: 0 0 0 2px var(--tint, var(--brand-primary)); }
+.card-opt strong { display: block; }
+.roles { display: flex; gap: 12px; flex-wrap: wrap; }
+.roles .card-opt { flex: 1 1 140px; border-left-width: 2px; --tint: var(--brand-primary); }
+.field { display: block; margin-top: 12px; }
+.field input { display: block; width: 100%; min-height: 44px; margin-top: 4px; padding: 0 12px; border-radius: var(--radius);
+  border: 1px solid var(--border); background: var(--surface); }
+.form-error { color: var(--danger); margin: 12px 0 0; }
+.picker .btn.primary { width: 100%; margin-top: 20px; }
+.demo-note { margin-top: 16px; font-size: .9rem; color: var(--text-muted); }
+
+/* Chat shell */
+.chat { display: flex; flex-direction: column; height: 100dvh; max-width: 720px; margin: 0 auto; background: var(--brand-bg); }
+.chat-header { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 10px var(--space);
+  background: var(--brand-primary); color: var(--on-primary); }
+.chat-header .logo { background: var(--on-primary); color: var(--brand-primary); font-weight: 700; font-size: .8rem;
+  padding: 4px 8px; border-radius: 8px; }
+.chat-header .name { font-weight: 600; flex: 1 1 120px; min-width: 0; overflow-wrap: anywhere; }
+.pill { font-size: .75rem; padding: 3px 8px; border-radius: 999px; border: 1px solid currentColor; }
+.chat-header a, .chat-header button { color: var(--on-primary); min-height: 40px; display: inline-flex; align-items: center;
+  padding: 0 10px; border: 1px solid currentColor; border-radius: 8px; background: none; text-decoration: none; font-size: .9rem; }
+.messages { flex: 1; overflow-y: auto; padding: var(--space); display: flex; flex-direction: column; gap: 12px; }
+.empty { margin: auto 0; text-align: center; }
+.empty h2 { margin: 0 0 4px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
+.chip-q { min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--brand-primary);
+  background: var(--surface); color: var(--text); }
+.msg { max-width: 88%; padding: 10px 14px; border-radius: var(--radius); overflow-wrap: anywhere; }
+.msg.user { align-self: flex-end; background: var(--brand-primary); color: var(--on-primary); border-bottom-right-radius: 4px; white-space: pre-wrap; }
+.msg.bot { align-self: flex-start; background: var(--surface); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
+.msg.bot p { margin: 0 0 .5em; }
+.msg.bot p:last-child { margin-bottom: 0; }
+.msg.bot ul { margin: .25em 0 .5em; padding-left: 1.2em; }
+.sources { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.src { font-size: .75rem; padding: 2px 8px; border-radius: 999px; background: var(--brand-bg); border: 1px solid var(--border); color: var(--text-muted); }
+.contact-card { margin-top: 10px; padding: 10px 12px; border-radius: 10px; border: 2px solid var(--brand-accent); background: var(--brand-bg); }
+.contact-card strong { display: block; margin-bottom: 4px; }
+.contact-card a { display: inline-flex; align-items: center; min-height: 40px; margin-right: 12px; }
+.msg.error { align-self: stretch; max-width: none; background: var(--surface); border: 1px solid var(--danger); color: var(--text); }
+.msg.error .btn { margin-top: 8px; }
+.typing span { display: inline-block; width: 8px; height: 8px; margin: 0 2px; border-radius: 50%; background: var(--text-muted); animation: blink 1.2s infinite; }
+.typing span:nth-child(2) { animation-delay: .2s; }
+.typing span:nth-child(3) { animation-delay: .4s; }
+@keyframes blink { 0%, 80%, 100% { opacity: .25; } 40% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .typing span { animation: none; } }
+
+/* Input bar */
+.composer { padding: 8px var(--space) calc(8px + env(safe-area-inset-bottom)); background: var(--surface); border-top: 1px solid var(--border); }
+.composer-row { display: flex; gap: 8px; align-items: flex-end; }
+.composer textarea { flex: 1; min-width: 0; resize: none; min-height: 44px; max-height: 6.6em; padding: 10px 12px; line-height: 1.4;
+  border-radius: var(--radius); border: 1px solid var(--border); background: var(--brand-bg); }
+.composer .send { min-width: 64px; }
+.counter { font-size: .75rem; text-align: right; color: var(--text-muted); min-height: 1em; }
+.counter.warn { color: var(--danger); }
