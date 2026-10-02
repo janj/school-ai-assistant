@@ -5,7 +5,7 @@ A birthday at Little Comets means a **"Birthday Orbit"**: the child carries a pa
 ## Treats
 - Treats are **optional**. If you would like to send one, it must be **store-bought and nut-free**, in the original packaging with the label.
 - No homemade treats, no frosting-heavy cakes, and no balloons or candles.
-- Let your child's teacher know **one week ahead**. Treats are served after outdoor play, at around 11:45 AM, and are sent only on days that fit the child's schedule.
+- Let your child's teacher know **one week ahead**. Treats are served after the morning outdoor play (see the daily schedule) and are sent only on days that fit the child's schedule.
 - Cupcakes, fruit skewers, or yogurt tubes work well. Please bring enough for the whole class (Moon 10, Star 12, Rocket 14).
 
 ## No-food ideas

@@ -1,5 +1,6 @@
 [
   {
+    "key": "tuition_infants",
     "category": "Tuition",
     "name": "Infants (6 weeks to 12 months)",
     "amount_cents": 142000,
@@ -7,6 +8,7 @@
     "notes": "Full-time, Monday to Friday."
   },
   {
+    "key": "tuition_toddlers",
     "category": "Tuition",
     "name": "Toddlers (12 to 24 months)",
     "amount_cents": 124000,
@@ -14,6 +16,7 @@
     "notes": "Full-time."
   },
   {
+    "key": "tuition_twos",
     "category": "Tuition",
     "name": "Twos (24 to 36 months)",
     "amount_cents": 112000,
@@ -21,6 +24,7 @@
     "notes": "Full-time."
   },
   {
+    "key": "tuition_preschool",
     "category": "Tuition",
     "name": "Preschool (3 years)",
     "amount_cents": 98000,
@@ -28,6 +32,7 @@
     "notes": "Full-time."
   },
   {
+    "key": "tuition_prek",
     "category": "Tuition",
     "name": "Pre-K (4 to 5 years)",
     "amount_cents": 92000,
@@ -35,6 +40,7 @@
     "notes": "Full-time. Meals and snacks are included in tuition."
   },
   {
+    "key": "registration",
     "category": "Registration",
     "name": "Registration fee",
     "amount_cents": 7500,
@@ -42,6 +48,7 @@
     "notes": "Non-refundable, due when a place is accepted."
   },
   {
+    "key": "supplies",
     "category": "Supplies",
     "name": "Annual supply fee",
     "amount_cents": 12000,
@@ -49,6 +56,7 @@
     "notes": "Covers art supplies, cot sheets and classroom materials. Charged each September."
   },
   {
+    "key": "late_pickup",
     "category": "Late pickup",
     "name": "Late pickup fee",
     "amount_cents": 200,
@@ -56,6 +64,7 @@
     "notes": "Starts at 6:01 PM. Billed on the next monthly invoice."
   },
   {
+    "key": "returned_payment",
     "category": "Returned payment",
     "name": "Returned payment fee",
     "amount_cents": 3500,
@@ -63,6 +72,7 @@
     "notes": "Charged for a returned check or declined automatic payment."
   },
   {
+    "key": "sibling_discount",
     "category": "Discount",
     "name": "Sibling discount",
     "amount_cents": null,
@@ -70,6 +80,7 @@
     "notes": "10% off the tuition of the older child when two or more siblings are enrolled."
   },
   {
+    "key": "tuition_due",
     "category": "Payments",
     "name": "Tuition due date",
     "amount_cents": null,

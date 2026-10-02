@@ -1,8 +1,8 @@
 # Lunch, Snacks and Allergies
 
 ## Who provides what
-- **Families pack lunch** for full-day children. Lunch is at 12:30 PM.
-- **The center provides a morning snack** (9:30 AM) for every child, and water at all times.
+- **Families pack lunch** for full-day children (lunch time is in the daily schedule).
+- **The center provides a morning snack** (see the daily schedule) for every child, and water at all times.
 - Part-day children go home before lunch and do not need to bring one.
 - There is no breakfast or afternoon snack. Extended-care children may bring a snack for their own use.
 
@@ -17,7 +17,7 @@ The center is **completely nut-free**. Please do not send peanuts, tree nuts, pe
 
 ## Allergies
 - Tell us about any allergies on the application and provide a doctor's action plan.
-- Our snack list is posted at the front desk and sent monthly. The Snack Coordinator, Pilar Duarte, can answer questions at snacks@littlecomets.test.
+- Our snack list is posted at the front desk and sent monthly. The Snack Coordinator, {{contact:snacks}}, can answer questions at {{contact:snacks.email}}.
 - Allergy information is posted in each classroom.
 
 ## Outside food

@@ -4,9 +4,9 @@ Juniper Hill serves children from **6 weeks to 5 years** (before kindergarten en
 
 ## Steps
 1. **Join the waitlist** online or at the front desk. There is no fee to join.
-2. **Tour:** the Enrollment Coordinator, Imani Okafor, schedules a 30-minute tour once a space is likely.
+2. **Tour:** the Enrollment Coordinator, {{contact:enrollment}}, schedules a 30-minute tour once a space is likely.
 3. **Offer:** when a space opens, we send a written offer. You have **7 days** to accept.
-4. **Accept:** pay the $75 registration fee and return the enrollment packet.
+4. **Accept:** pay the {{fee:registration}} registration fee and return the enrollment packet.
 5. **Orientation:** a 1-hour visit with your child, before the first day.
 
 ## Documents required
@@ -27,4 +27,4 @@ Children must be up to date for their age (DTaP, polio, MMR, Hib, hepatitis B, v
 - The coordinator confirms waitlist interest by email every spring. Families who do not reply are removed.
 
 ## Withdrawal
-Please give **30 days' written notice**. Tuition is charged through the notice period.
+Notice required: **{{fact:withdrawal_notice}}**. Tuition is charged through the notice period.

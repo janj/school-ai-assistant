@@ -1,40 +1,22 @@
 """Renders one center's knowledge base into prompt text.
 
 Contract (docs/CONTRACTS.md §4): every section starts with a line `[section: <id>]`.
-Section IDs: center, contacts, hours, closures, schedule, fees, lunch_menu,
-policy:<topic>, faq:<id>. section_ids() returns exactly the IDs present.
+Section IDs: center, contacts, hours, closures, schedule, fees, lunch_menu, facts,
+policy:<topic>, faq:<id>. Placeholders in policy and FAQ text are resolved here (app/placeholders.py). section_ids() returns exactly the IDs present.
 
 Rendered fresh on every call (a few small SQLite queries) so admin edits, which happen
 in another module, are always visible. Output is deterministic: fixed ordering, no timestamps.
 """
 
+import logging
 import re
-from datetime import date, datetime
 
-from app import db
+from app import db, fmt, placeholders
+
+log = logging.getLogger(__name__)
 
 _SECTION_RE = re.compile(r"^\[section: (.+)\]$", re.MULTILINE)
-
-
-def _time(value: str | None) -> str:
-    if not value:
-        return ""
-    return datetime.strptime(value, "%H:%M").strftime("%I:%M %p").lstrip("0")
-
-
-def _money(cents: int | None) -> str:
-    return "" if cents is None else f"${cents / 100:,.2f}"
-
-
-def _day(value: str) -> str:
-    d = date.fromisoformat(value)
-    return f"{d.strftime('%A %B')} {d.day}, {d.year}"
-
-
-def _span(start: str | None, end: str | None) -> str:
-    if start and end:
-        return f"{_time(start)} - {_time(end)}"
-    return _time(start) or _time(end)
+_time, _money, _day, _span = fmt.time, fmt.money, fmt.day, fmt.span
 
 
 def _note(text: str | None) -> str:
@@ -55,6 +37,14 @@ def _sections(slug: str) -> list[tuple[str, str]]:
         lunch = q("SELECT * FROM lunch_menu WHERE center_slug = ? ORDER BY id")
         policies = q("SELECT * FROM policies WHERE center_slug = ? ORDER BY topic")
         faqs = q("SELECT * FROM faq WHERE center_slug = ? ORDER BY id")
+        facts = q("SELECT * FROM facts WHERE center_slug = ? ORDER BY key")
+        ctx = placeholders.context(conn, slug)
+
+    def resolve(text: str, where: str) -> str:
+        out, missing = placeholders.render(text, ctx)
+        if missing:
+            log.warning("Unresolved placeholders in %s/%s: %s", slug, where, ", ".join(missing))
+        return out
 
     out: list[tuple[str, str]] = []
     if center:
@@ -111,10 +101,15 @@ def _sections(slug: str) -> list[tuple[str, str]]:
         lines = [f"- {r['day']} {r['meal']}: {r['items']}{_note(r['notes'])}" for r in lunch]
         out.append(("lunch_menu", "\n".join(lines)))
 
+    if facts:
+        lines = [f"- {r['label']}: {r['value']}{_note(r['notes'])}" for r in facts]
+        out.append(("facts", "\n".join(lines)))
+
     for p in policies:
-        out.append((f"policy:{p['topic']}", f"{p['title']}\n{p['body_md'].strip()}"))
+        body = resolve(p["body_md"].strip(), f"policy:{p['topic']}")
+        out.append((f"policy:{p['topic']}", f"{p['title']}\n{body}"))
     for f in faqs:
-        out.append((f"faq:{f['id']}", f"Q: {f['question']}\nA: {f['answer']}"))
+        out.append((f"faq:{f['id']}", f"Q: {f['question']}\nA: {resolve(f['answer'], f'faq:{f['id']}')}"))
     return out
 
 

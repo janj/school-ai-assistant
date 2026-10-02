@@ -156,20 +156,38 @@ export async function mountData(el, session) {
     return box;
   }
 
+  // Text that may contain {{placeholders}} (Phase 3.0); the server validates them on save.
+  const PLACEHOLDER_FIELDS = { policies: "body_md", faq: "answer" };
+
   function showForm(name, row) {
     const meta = registry[name];
     const inputs = {};
     const fields = meta.columns.map((c) => {
       const value = row ? row[c.name] : null;
-      let input, extra = null;
+      let input, extra = null, hint = null;
+      const takesPlaceholders = PLACEHOLDER_FIELDS[name] === c.name;
       if (c.type === "longtext" || c.type === "markdown") {
         input = h("textarea", { name: c.name, rows: c.type === "markdown" ? 10 : 4 });
         input.value = value ?? "";
-        if (c.type === "markdown") extra = markdownToggle(input);
+        if (takesPlaceholders) {
+          extra = placeholderTools(input, c.type === "markdown");
+          hint = h("small.dx-muted", null,
+            "Don't type fees, phone numbers, names or times that live in another table: insert a placeholder " +
+            "so the value stays in one place.");
+        } else if (c.type === "markdown") extra = markdownToggle(input);
+      } else if (c.type === "key") {
+        input = h("input", { name: c.name, type: "text", value: value ?? "", maxlength: 60, autocomplete: "off",
+                             pattern: "[a-z0-9_]+", placeholder: "e.g. late_pickup" });
+        if (row) {
+          input.readOnly = true;
+          hint = h("small.dx-muted", null, "Keys can't be changed: policies refer to this row by its key.");
+        } else {
+          hint = h("small.dx-muted", null, "Lowercase letters, digits and underscores. Can't be changed later.");
+        }
       } else if (c.type === "time" || c.type === "date") {
         input = h("input", { name: c.name, type: c.type, value: value ?? "" });
       } else if (c.type === "money_cents") {
-        input = h("input", { name: c.name, type: "number", step: "0.01", min: "0", inputmode: "decimal",
+        input = h("input", { name: c.name, type: "number", step: "0.01", inputmode: "decimal",
                              value: value == null ? "" : (value / 100).toFixed(2) });
       } else if (c.type === "int") {
         input = h("input", { name: c.name, type: "number", step: "1", inputmode: "numeric", value: value ?? "" });
@@ -178,7 +196,7 @@ export async function mountData(el, session) {
       }
       if (c.required) input.required = true;
       inputs[c.name] = input;
-      return h("label", null, h("span", { class: c.required ? "req" : "" }, c.label), input, extra);
+      return h("label", null, h("span", { class: c.required ? "req" : "" }, c.label), hint, input, extra);
     });
 
     const err = h("div.dx-error", { role: "alert" });
@@ -195,7 +213,8 @@ export async function mountData(el, session) {
           if (raw.trim() === "") body[c.name] = null;
           else {
             const n = Number(raw);
-            if (!Number.isFinite(n) || n < 0) { err.textContent = `${c.label} must be a dollar amount.`; return; }
+            // Negative amounts are allowed (discounts).
+            if (!Number.isFinite(n)) { err.textContent = `${c.label} must be a dollar amount.`; return; }
             body[c.name] = Math.round(n * 100);
           }
         } else if (c.type === "int") {
@@ -211,6 +230,48 @@ export async function mountData(el, session) {
     };
     main.replaceChildren(h("div.dx-head", null, h("h2", null, `${row ? "Edit" : "Add"}: ${meta.label}`)), form);
     form.querySelector("input, textarea")?.focus();
+  }
+
+  // Placeholder picker + a preview resolved by the server, exactly as the assistant will see it.
+  function placeholderTools(textarea, isMarkdown) {
+    const picker = h("select", { "aria-label": "Insert placeholder" }, h("option", { value: "" }, "Insert placeholder…"));
+    api("GET", "/placeholders").then((items) => {
+      const groups = {};
+      for (const it of items) (groups[it.group] ||= []).push(it);
+      for (const [group, list] of Object.entries(groups)) {
+        picker.append(h("optgroup", { label: group },
+          list.map((it) => h("option", { value: it.token }, `${it.token}  →  ${it.value || "(empty)"}`))));
+      }
+    }).catch(() => picker.append(h("option", { disabled: true }, "Couldn't load placeholders")));
+    picker.onchange = () => {
+      const token = picker.value;
+      if (!token) return;
+      const { selectionStart: a = textarea.value.length, selectionEnd: b = a } = textarea;
+      textarea.setRangeText(token, a, b, "end");
+      textarea.focus();
+      picker.value = "";
+    };
+
+    const edit = h("button", { type: "button", "aria-pressed": "true" }, "Edit");
+    const prev = h("button", { type: "button", "aria-pressed": "false" }, "Preview");
+    const preview = h("div.dx-preview");
+    const warn = h("div.dx-error", { role: "status" });
+    preview.hidden = true;
+    const set = async (on) => {
+      textarea.hidden = on; preview.hidden = !on; picker.hidden = on;
+      edit.setAttribute("aria-pressed", String(!on)); prev.setAttribute("aria-pressed", String(on));
+      warn.textContent = "";
+      if (!on) return;
+      preview.replaceChildren(h("p.dx-muted", null, "Loading preview…"));
+      try {
+        const { rendered, invalid } = await api("POST", "/preview", { text: textarea.value });
+        preview.replaceChildren(isMarkdown ? renderMarkdown(rendered) : h("p", { style: "white-space: pre-wrap" }, rendered));
+        if (invalid.length) warn.textContent = `Unknown placeholder(s): ${invalid.join(", ")}. Saving will fail until they're fixed.`;
+      } catch (e) { preview.replaceChildren(h("p.dx-error", null, e.message)); }
+    };
+    edit.onclick = () => set(false);
+    prev.onclick = () => set(true);
+    return h("div", null, h("div.dx-md-tabs", null, edit, prev, picker), warn, preview);
   }
 
   function markdownToggle(textarea) {

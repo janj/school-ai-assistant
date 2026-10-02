@@ -1,0 +1,32 @@
+[
+  {
+    "key": "fever_threshold",
+    "label": "Fever threshold (stay home)",
+    "value": "100.4°F (38.0°C) or higher",
+    "notes": "Taken by mouth, ear or forehead"
+  },
+  {
+    "key": "late_pickup_grace",
+    "label": "Late pickup grace period",
+    "value": "None: the fee starts the first minute after closing",
+    "notes": null
+  },
+  {
+    "key": "sick_pickup_window",
+    "label": "Time to pick up a sick child after our call",
+    "value": "45 minutes",
+    "notes": null
+  },
+  {
+    "key": "stomach_bug_exclusion",
+    "label": "Time symptom-free after vomiting or diarrhea before returning",
+    "value": "24 hours",
+    "notes": null
+  },
+  {
+    "key": "withdrawal_notice",
+    "label": "Notice required to withdraw",
+    "value": "30 days, in writing",
+    "notes": "Tuition is charged through the notice period"
+  }
+]

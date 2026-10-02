@@ -3,7 +3,10 @@
 Every editable table is center-scoped. `center_slug` and `id` are never editable;
 the editor fills center_slug from the admin's session.
 
-Column types: text | longtext | markdown | time | date | int | money_cents
+Column types: text | longtext | markdown | time | date | int | money_cents | key
+
+`key` columns are the stable placeholder keys (Phase 3.0): required on create, lowercase
+letters/digits/underscores, unique per center, and read-only after creation.
 """
 
 EDITABLE = {
@@ -24,6 +27,7 @@ EDITABLE = {
         "label": "Directory",
         "order_by": "sort_order, name",
         "columns": [
+            ("key", "key", "Key", True),
             ("name", "text", "Name", True),
             ("position", "text", "Position", True),
             ("phone", "text", "Phone", False),
@@ -35,6 +39,7 @@ EDITABLE = {
         "label": "Hours of operation",
         "order_by": "id",
         "columns": [
+            ("key", "key", "Key", True),
             ("days", "text", "Days", True),
             ("open_time", "time", "Opens", False),
             ("close_time", "time", "Closes", False),
@@ -65,6 +70,7 @@ EDITABLE = {
         "label": "Fees",
         "order_by": "category, name",
         "columns": [
+            ("key", "key", "Key", True),
             ("category", "text", "Category", True),
             ("name", "text", "Name", True),
             ("amount_cents", "money_cents", "Amount", False),
@@ -79,6 +85,16 @@ EDITABLE = {
             ("day", "text", "Day", True),
             ("meal", "text", "Meal", True),
             ("items", "longtext", "Items", True),
+            ("notes", "text", "Notes", False),
+        ],
+    },
+    "facts": {
+        "label": "Facts",
+        "order_by": "key",
+        "columns": [
+            ("key", "key", "Key", True),
+            ("label", "text", "Label", True),
+            ("value", "text", "Value", True),
             ("notes", "text", "Notes", False),
         ],
     },

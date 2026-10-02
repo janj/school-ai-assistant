@@ -1,5 +1,6 @@
 [
   {
+    "key": "director",
     "name": "Nadia Castellanos",
     "position": "Owner and Director",
     "phone": "(505) 555-0161",
@@ -7,6 +8,7 @@
     "sort_order": 1
   },
   {
+    "key": "front_desk",
     "name": "Front Desk",
     "position": "Office and Parent Questions",
     "phone": "(505) 555-0160",
@@ -14,6 +16,7 @@
     "sort_order": 2
   },
   {
+    "key": "enrollment",
     "name": "Owen Takahashi",
     "position": "Enrollment and Tours",
     "phone": "(505) 555-0162",
@@ -21,6 +24,7 @@
     "sort_order": 3
   },
   {
+    "key": "teacher_moon",
     "name": "Beatrice Lang",
     "position": "Lead Teacher, Moon Room (ages 2-3)",
     "phone": "(505) 555-0163",
@@ -28,6 +32,7 @@
     "sort_order": 4
   },
   {
+    "key": "teacher_star",
     "name": "Felix Ndiaye",
     "position": "Lead Teacher, Star Room (ages 3-4)",
     "phone": "(505) 555-0164",
@@ -35,6 +40,7 @@
     "sort_order": 5
   },
   {
+    "key": "teacher_rocket",
     "name": "Greta Sorensen",
     "position": "Lead Teacher, Rocket Room (ages 4-5)",
     "phone": "(505) 555-0165",
@@ -42,6 +48,7 @@
     "sort_order": 6
   },
   {
+    "key": "health_officer",
     "name": "Nadia Castellanos",
     "position": "Health and Safety Officer (illness questions)",
     "phone": "(505) 555-0161",
@@ -49,6 +56,7 @@
     "sort_order": 7
   },
   {
+    "key": "snacks",
     "name": "Pilar Duarte",
     "position": "Snack Coordinator (allergies and snack menu)",
     "phone": "(505) 555-0166",

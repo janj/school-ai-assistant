@@ -1,5 +1,6 @@
 [
   {
+    "key": "part_day_5",
     "category": "Tuition",
     "name": "Part-day, 5 days per week (8:30 AM-12:30 PM)",
     "amount_cents": 16500,
@@ -7,6 +8,7 @@
     "notes": null
   },
   {
+    "key": "part_day_3",
     "category": "Tuition",
     "name": "Part-day, 3 days per week (Mon/Wed/Fri)",
     "amount_cents": 11000,
@@ -14,6 +16,7 @@
     "notes": null
   },
   {
+    "key": "full_day_5",
     "category": "Tuition",
     "name": "Full-day, 5 days per week (8:30 AM-3:30 PM)",
     "amount_cents": 28500,
@@ -21,6 +24,7 @@
     "notes": null
   },
   {
+    "key": "full_day_3",
     "category": "Tuition",
     "name": "Full-day, 3 days per week (Mon/Wed/Fri)",
     "amount_cents": 18500,
@@ -28,6 +32,7 @@
     "notes": null
   },
   {
+    "key": "extended_care",
     "category": "Extended care",
     "name": "Extended care (7:30-8:30 AM or 3:30-5:30 PM)",
     "amount_cents": 2500,
@@ -35,6 +40,7 @@
     "notes": "Not available after 3:30 PM on Wednesdays. Per session used."
   },
   {
+    "key": "registration",
     "category": "Registration",
     "name": "Registration fee",
     "amount_cents": 5000,
@@ -42,6 +48,7 @@
     "notes": "Non-refundable. Holds your child's place."
   },
   {
+    "key": "supplies",
     "category": "Supplies",
     "name": "Supply fee",
     "amount_cents": 8500,
@@ -49,6 +56,7 @@
     "notes": "Charged in August and January. Covers art supplies and the class T-shirt."
   },
   {
+    "key": "late_pickup",
     "category": "Late pickup",
     "name": "Late pickup fee",
     "amount_cents": 1500,
@@ -56,6 +64,7 @@
     "notes": "Starts after a 10-minute grace period (after 5:40 PM, or 10 minutes after your program ends). Any part of a block counts as a full block."
   },
   {
+    "key": "returned_payment",
     "category": "Returned payment",
     "name": "Returned payment fee",
     "amount_cents": 2500,
@@ -63,6 +72,7 @@
     "notes": "Plus any bank fees."
   },
   {
+    "key": "sibling_discount",
     "category": "Discount",
     "name": "Sibling discount",
     "amount_cents": -1000,
@@ -70,6 +80,7 @@
     "notes": "$10 off per week for the second and each additional child enrolled."
   },
   {
+    "key": "tuition_due",
     "category": "Payments",
     "name": "Tuition due date",
     "amount_cents": null,

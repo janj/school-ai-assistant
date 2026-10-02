@@ -1,5 +1,6 @@
 [
   {
+    "key": "director",
     "name": "Marguerite Alvarado",
     "position": "Center Director",
     "phone": "(505) 555-0121",
@@ -7,6 +8,7 @@
     "sort_order": 1
   },
   {
+    "key": "assistant_director",
     "name": "Theodore Brandt",
     "position": "Assistant Director",
     "phone": "(505) 555-0122",
@@ -14,6 +16,7 @@
     "sort_order": 2
   },
   {
+    "key": "front_desk",
     "name": "Front Desk",
     "position": "Front Office",
     "phone": "(505) 555-0120",
@@ -21,6 +24,7 @@
     "sort_order": 3
   },
   {
+    "key": "enrollment",
     "name": "Imani Okafor",
     "position": "Enrollment Coordinator",
     "phone": "(505) 555-0123",
@@ -28,6 +32,7 @@
     "sort_order": 4
   },
   {
+    "key": "nurse",
     "name": "Rosalind Vega, RN",
     "position": "Center Nurse (health and illness questions)",
     "phone": "(505) 555-0124",
@@ -35,6 +40,7 @@
     "sort_order": 5
   },
   {
+    "key": "kitchen",
     "name": "Desmond Whitfield",
     "position": "Food Service Manager",
     "phone": "(505) 555-0125",
@@ -42,6 +48,7 @@
     "sort_order": 6
   },
   {
+    "key": "teacher_infants",
     "name": "Priya Raman",
     "position": "Lead Teacher, Infant Room (Sparrows)",
     "phone": "(505) 555-0126",
@@ -49,6 +56,7 @@
     "sort_order": 7
   },
   {
+    "key": "teacher_toddlers",
     "name": "Carlos Medina",
     "position": "Lead Teacher, Toddler Room (Chipmunks)",
     "phone": "(505) 555-0127",
@@ -56,6 +64,7 @@
     "sort_order": 8
   },
   {
+    "key": "teacher_prek",
     "name": "Hannah Lindqvist",
     "position": "Lead Teacher, Pre-K Room (Owls)",
     "phone": "(505) 555-0128",

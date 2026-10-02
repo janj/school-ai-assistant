@@ -1,0 +1,44 @@
+[
+  {
+    "key": "fever_threshold",
+    "label": "Fever threshold (stay home)",
+    "value": "100.0°F (37.8°C) or higher",
+    "notes": null
+  },
+  {
+    "key": "late_pickup_grace",
+    "label": "Late pickup grace period",
+    "value": "10 minutes after your program ends",
+    "notes": "No fee during the grace period"
+  },
+  {
+    "key": "part_day_end",
+    "label": "Part-day program pick-up time",
+    "value": "12:30 PM",
+    "notes": null
+  },
+  {
+    "key": "full_day_end",
+    "label": "Full-day program pick-up time",
+    "value": "3:30 PM",
+    "notes": null
+  },
+  {
+    "key": "sick_pickup_window",
+    "label": "Time to pick up a sick child after our call",
+    "value": "30 minutes",
+    "notes": null
+  },
+  {
+    "key": "stomach_bug_exclusion",
+    "label": "Time symptom-free after vomiting or diarrhea before returning",
+    "value": "48 hours",
+    "notes": null
+  },
+  {
+    "key": "withdrawal_notice",
+    "label": "Notice required to leave",
+    "value": "Two weeks, in writing by email to the Director",
+    "notes": null
+  }
+]

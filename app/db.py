@@ -19,7 +19,10 @@ SEED_TABLES = {
     "schedule_blocks": "schedule.json",
     "fees": "fees.json",
     "lunch_menu": "lunch.json",
+    "facts": "facts.json",
 }
+# Tables whose rows carry a stable `key` for placeholders (app/placeholders.py).
+KEYED_TABLES = ["contacts", "hours", "fees", "facts"]
 # Content tables wiped on a reset-to-seed (faq included: admin-authored KB entries).
 RESETTABLE_TABLES = [*SEED_TABLES, "policies", "faq"]
 
@@ -49,10 +52,29 @@ def init_db() -> None:
     schema = (Path(__file__).parent / "schema.sql").read_text()
     with connect() as conn:
         conn.executescript(schema)
+        reseed = _migrate(conn)
         existing = {r["slug"] for r in rows(conn, "SELECT slug FROM centers")}
     for slug in seed_slugs():
-        if slug not in existing:
+        if slug not in existing or slug in reseed:
             load_seed(slug)
+
+
+def _migrate(conn) -> set[str]:
+    """Bring an older database up to the current schema. Returns centers that must be re-seeded.
+
+    Phase 3.0 added `key` to contacts/hours/fees. Rows from before then have no keys, and
+    placeholders can't resolve without them, so those centers are reloaded from seed (POC: any
+    admin edits to them are lost; the audit log is kept).
+    """
+    reseed = set()
+    for table in ("contacts", "hours", "fees"):
+        cols = {r["name"] for r in rows(conn, f"PRAGMA table_info({table})")}
+        if "key" not in cols:
+            conn.execute(f"ALTER TABLE {table} ADD COLUMN key TEXT")
+            reseed |= {r["center_slug"] for r in rows(conn, f"SELECT DISTINCT center_slug FROM {table}")}
+    for table in KEYED_TABLES:
+        conn.execute(f"CREATE UNIQUE INDEX IF NOT EXISTS {table}_center_key ON {table} (center_slug, key)")
+    return reseed
 
 
 def seed_slugs() -> list[str]:

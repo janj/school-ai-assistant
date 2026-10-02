@@ -1,7 +1,7 @@
 # Arrival and Drop-off
 
 - **Program drop-off is 8:30 to 9:00 AM.** The first learning block begins at 9:00 AM sharp.
-- **Extended care** families may drop off from 7:30 AM.
+- **Extended care** families may drop off from {{hours:weekdays.open}}.
 - **Late arrival:** if you will arrive after **9:15 AM**, please text the front desk. Children arriving after 10:00 AM cannot join that day unless you've arranged it with the director, because the class is outdoors and then at snack.
 - Park in the lot and walk your child to the door of the room. A teacher meets each child at the door.
 - Sign your child in on the parent portal tablet by the front door.

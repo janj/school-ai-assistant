@@ -6,7 +6,7 @@ We love to celebrate! Because the kitchen is nut-free and several children have 
 - **Only store-bought treats** in sealed packaging with the ingredient label visible are accepted. **No homemade food.**
 - Treats must be **nut-free** (no peanuts or tree nuts, and no "may contain" labels).
 - Give the teacher **48 hours' notice** so the room can check for allergies.
-- Treats are served at PM snack (2:15 PM). Send enough for the whole class; the teacher will tell you the headcount.
+- Treats are served at PM snack (see the daily schedule for your child's room). Send enough for the whole class; the teacher will tell you the headcount.
 - Suggested options: mini muffins, fruit cups, cheese sticks, or sealed cookies from a nut-free bakery.
 
 ## No-food alternatives

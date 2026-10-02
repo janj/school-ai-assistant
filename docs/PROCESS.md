@@ -175,7 +175,7 @@ Track briefs: `docs/tracks/` (start with `_common.md`). Each track's deliverable
 Merge in the order A → B → E → C → D → F. Run every `eval_questions.md` question by hand, fix
 gaps, write the 1-page `README.md` and `docs/ARCHITECTURE.md`, deploy and do a live check.
 
-### Phase 3.0 — Single source of truth for facts (operator + Opus, serial)  `todo`
+### Phase 3.0 — Single source of truth for facts (operator + Opus, serial)  `merged`
 
 **Problem (found in Phase 2):** policy prose repeats facts that also live in tables: about 18–22
 per center (fees, contact phones/emails, times). When an admin edits the fees table, the copy in

@@ -49,8 +49,9 @@ admins.
 
 | Check | Example | Action |
 |---|---|---|
-| Typed literal that matches exactly **one** keyed value | "$75" in enrollment, and only `fee:registration` is $75 | **Auto-fix**: replace with `{{fee:registration}}` |
-| Typed literal that matches **several** keyed values | "$15": late fee and returned-payment fee | Flag, listing both candidates |
+| Typed **identifier or amount** (phone, email, person's name, $) matching exactly **one** keyed value | "$75" in enrollment, and only `fee:registration` is $75 | **Auto-fix**: replace with `{{fee:registration}}` |
+| Typed identifier or amount matching **several** keyed values | "(505) 555-0120": front desk and center main phone | Flag, listing the candidates |
+| Typed **time or fact value** matching a keyed value | "24 hours" equals `fact:stomach_bug_exclusion` | Flag only, never auto-fixed (see below) |
 | Broken placeholder (e.g. after a reset or bad import) | `{{contact:cook}}` with no such key | Flag |
 | Closure calendar running out | No closures dated after the next 60 days | Flag: "add next year's closures" |
 | Missing required policy topic | No `illness_exclusion` policy | Flag |
@@ -66,6 +67,13 @@ admins.
 | Gaps shown by real questions | Cluster of unanswered questions about field trips | Flag: suggest an FAQ or policy (links to Track H's queue) |
 
 ### When it may fix things itself
+
+**Lesson from Phase 3.0:** an equal value is not always the same fact. In Juniper Hill's illness
+policy, "fever-free for 24 hours" and "symptom-free for 24 hours" share a value but are different
+rules. Replacing the first with `{{fact:stomach_bug_exclusion}}` would pass the check below today
+and silently change meaning the day the stomach-bug rule changes. So auto-fixes are limited to
+**identifiers and money amounts** with a single candidate. `scripts/kb_lint.py` reports these as
+`duplicate`; times and fact values come out as `possible_duplicate` and always go to review.
 
 An auto-fix is applied only if **all** of these hold:
 1. **Rule-based:** the fix comes from code, not from a model's judgment.

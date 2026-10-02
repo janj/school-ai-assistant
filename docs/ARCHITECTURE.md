@@ -39,8 +39,8 @@ model has no other center's data to leak. All of this was checked by hand in Pha
 
 | Kind | Tables | Notes |
 |---|---|---|
-| Structured facts | `centers`, `contacts`, `hours`, `closures`, `schedule_blocks`, `fees`, `lunch_menu` | Typed columns, edited through forms built from `app/registry.py` |
-| Prose | `policies` (topic, title, body_md), `faq` | Markdown; `faq` is for admin answers to unanswered questions (Phase 3) |
+| Structured facts | `centers`, `contacts`, `hours`, `closures`, `schedule_blocks`, `fees`, `lunch_menu`, `facts` | Typed columns, edited through forms built from `app/registry.py`. `contacts`/`hours`/`fees`/`facts` have stable `key`s |
+| Prose | `policies` (topic, title, body_md), `faq` | Markdown with `{{placeholders}}` that are filled in from the keyed rows when the knowledge base is built (`app/placeholders.py`), so every fact has one home |
 | App state | `sessions`, `qa_log`, `audit_log` | Logs store scrubbed text only; no IPs anywhere |
 
 **Why not markdown files?** Admin edits, change history and reset to seed would then work

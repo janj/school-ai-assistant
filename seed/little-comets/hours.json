@@ -1,17 +1,20 @@
 [
   {
+    "key": "weekdays",
     "days": "Monday-Friday",
     "open_time": "07:30",
     "close_time": "17:30",
     "notes": "Part-day program runs 8:30 AM to 12:30 PM. Full-day program runs 8:30 AM to 3:30 PM, with optional extended care from 7:30 AM and until 5:30 PM."
   },
   {
+    "key": "weekends",
     "days": "Saturday-Sunday",
     "open_time": null,
     "close_time": null,
     "notes": "Closed"
   },
   {
+    "key": "wednesday",
     "days": "Wednesdays",
     "open_time": "07:30",
     "close_time": "15:30",

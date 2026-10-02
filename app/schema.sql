@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS centers (
 CREATE TABLE IF NOT EXISTS contacts (
     id          INTEGER PRIMARY KEY AUTOINCREMENT,
     center_slug TEXT NOT NULL REFERENCES centers(slug),
+    key         TEXT,                       -- stable placeholder key, e.g. "nurse" (Phase 3.0)
     name        TEXT NOT NULL,
     position    TEXT NOT NULL,
     phone       TEXT,
@@ -27,6 +28,7 @@ CREATE TABLE IF NOT EXISTS contacts (
 CREATE TABLE IF NOT EXISTS hours (
     id          INTEGER PRIMARY KEY AUTOINCREMENT,
     center_slug TEXT NOT NULL REFERENCES centers(slug),
+    key         TEXT,                       -- e.g. "weekdays"
     days        TEXT NOT NULL,              -- e.g. "Monday-Friday", "Saturday"
     open_time   TEXT,                       -- "07:00" (24h); NULL = closed
     close_time  TEXT,                       -- "18:00"
@@ -57,6 +59,7 @@ CREATE TABLE IF NOT EXISTS schedule_blocks (
 CREATE TABLE IF NOT EXISTS fees (
     id           INTEGER PRIMARY KEY AUTOINCREMENT,
     center_slug  TEXT NOT NULL REFERENCES centers(slug),
+    key          TEXT,                      -- e.g. "registration"
     category     TEXT NOT NULL,             -- "Tuition", "Registration", "Late pickup", ...
     name         TEXT NOT NULL,
     amount_cents INTEGER,
@@ -73,6 +76,19 @@ CREATE TABLE IF NOT EXISTS lunch_menu (
     items       TEXT NOT NULL,
     notes       TEXT
 );
+
+-- Reused facts with no other table home, e.g. fever threshold (Phase 3.0)
+CREATE TABLE IF NOT EXISTS facts (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    center_slug TEXT NOT NULL REFERENCES centers(slug),
+    key         TEXT NOT NULL,
+    label       TEXT NOT NULL,
+    value       TEXT NOT NULL,
+    notes       TEXT
+);
+
+-- Keys: unique per center, immutable after creation (API-enforced). Placeholders depend on them.
+-- Created in db.init_db after migrating older databases, so the key columns are sure to exist.
 
 -- Unstructured policy sections (markdown)
 CREATE TABLE IF NOT EXISTS policies (

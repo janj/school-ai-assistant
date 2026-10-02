@@ -63,11 +63,20 @@ All bodies are JSON. Errors are `{"detail": str}` (FastAPI's default), unless no
 | POST | `/api/admin/data/{table}` | `{...columns}` → the created row (not allowed for `centers`) |
 | PUT | `/api/admin/data/{table}/{id}` | `{...columns}` → the updated row (`centers` is keyed by slug and only allows the own slug) |
 | DELETE | `/api/admin/data/{table}/{id}` | → `{ok: true}` (not allowed for `centers`) |
+| GET | `/api/admin/placeholders` | → `[{token, value, group}]`: every placeholder available to this center (Phase 3.0) |
+| POST | `/api/admin/preview` | `{text}` → `{rendered, invalid: [token]}`: placeholders filled in as the assistant sees them (Phase 3.0) |
 | GET | `/api/admin/history?limit=&offset=` | → `[audit_log row]`, newest first |
 | POST | `/api/admin/reset` | `{confirm: "RESET"}` → `{ok: true}`. Calls `db.load_seed(<seed dir for the center>)` and writes an audit row with `action='reset'` |
 
 - `{table}` must be a key of `registry.EDITABLE`; anything else returns 404.
 - Every write records `audit_log(admin_name = session.display_name, before_json, after_json)`.
+- **Keys (Phase 3.0).** `contacts`, `hours`, `fees` and `facts` rows have a `key`:
+  - required on create, and must match `^[a-z0-9_]+$` (400 otherwise);
+  - unique per center (409 on a duplicate);
+  - can't be changed afterwards (400);
+  - can't be deleted while a policy or FAQ uses it (409, naming who uses it).
+- **Placeholders (Phase 3.0).** `policies.body_md` and `faq.answer` are checked on save. An
+  unknown or malformed placeholder returns 400 and lists them.
 - The seed directory name for a center is the same as its slug (see §7).
 
 ### Admin logs (Track E). All need `require_admin`; center comes from the session
@@ -91,11 +100,32 @@ All bodies are JSON. Errors are `{"detail": str}` (FastAPI's default), unless no
 | `schedule` | `schedule_blocks`, grouped by age group |
 | `fees` | `fees` (amounts shown as dollars) |
 | `lunch_menu` | `lunch_menu` |
+| `facts` | `facts` (label: value), Phase 3.0 |
 | `policy:<topic>` | one per `policies` row |
 | `faq:<id>` | one per `faq` row (Track H fills these; B renders whatever rows exist) |
 
 Output must be deterministic (stable ordering, no timestamps inside the KB text), so the prompt
 cache only changes when the data changes.
+
+### Placeholders (Phase 3.0, `app/placeholders.py`)
+Policy bodies and FAQ answers are filled in while the knowledge base is built. The model never
+sees `{{...}}`.
+
+| Token | Renders | Fields (first is the default) |
+|---|---|---|
+| `{{fee:key}}` | `$75.00` | `amount`, `name`, `period`, `notes` |
+| `{{contact:key}}` | `Rosalind Vega, RN` | `name`, `phone`, `email`, `position` |
+| `{{hours:key}}` | `6:30 AM - 6:00 PM` / `Closed` | `span`, `open`, `close`, `days` |
+| `{{fact:key}}` | the value | `value`, `label` |
+| `{{center:field}}` | the center row field | `name`, `main_phone`, `main_email`, `address`, `website`, `tagline` |
+
+A placeholder with no matching row renders as `(not listed)` and logs a warning, so the model
+never sees a gap it might fill by guessing.
+
+**Stable-key assumption (POC).** Keys are unique per center and can't be changed after creation,
+and rows in use can't be deleted. All of that is enforced in code. Deleting a row and re-creating
+it under a different key is not prevented. Production would add key pickers, a shared key
+vocabulary across centers, and migrations for renames.
 
 ## 5. Logging hook (Track E owns `app/qa_log.py`)
 
@@ -133,13 +163,14 @@ There is one directory per center: `seed/<slug>/`. The directory name must equal
 | File | Shape (one object per row; columns as in `app/schema.sql`, minus `id`/`center_slug`) |
 |---|---|
 | `center.json` | `{slug, name, tagline, address, main_phone, main_email, website, theme: {primary, accent, background, font, logo_text}}` |
-| `contacts.json` | `[{name, position, phone, email, sort_order}]` |
-| `hours.json` | `[{days, open_time, close_time, notes}]`. Times are 24h `"HH:MM"`; `null` means closed |
+| `contacts.json` | `[{key, name, position, phone, email, sort_order}]`. Key by role (`director`, `nurse`), not by person |
+| `hours.json` | `[{key, days, open_time, close_time, notes}]`. Times are 24h `"HH:MM"`; `null` means closed |
 | `closures.json` | `[{start_date, end_date, name, notes}]`. ISO dates; `end_date` is `null` for one day. Covers 2026-08 through 2027-07 |
 | `schedule.json` | `[{age_group, start_time, end_time, activity}]` |
-| `fees.json` | `[{category, name, amount_cents, period, notes}]` |
+| `fees.json` | `[{key, category, name, amount_cents, period, notes}]` |
+| `facts.json` | `[{key, label, value, notes}]`: reused facts with no other table home (fever threshold, grace period, …) |
 | `lunch.json` | `[{day, meal, items, notes}]` |
-| `policies/<topic>.md` | The first line is `# Title`, then a markdown body |
+| `policies/<topic>.md` | The first line is `# Title`, then a markdown body. Values that have a home elsewhere use placeholders or "see Fees"-style pointers ([KNOWLEDGE_MAINTENANCE.md](KNOWLEDGE_MAINTENANCE.md) §2). `scripts/kb_lint.py` must report 0 failing findings |
 | `eval_questions.md` | Not loaded. Manual check list: questions with expected answers, plus ones the data can't answer |
 
 **Required policy topics:** `late_pickup`, `items_from_home`, `enrollment`, `birthdays`,
