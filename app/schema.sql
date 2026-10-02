@@ -156,3 +156,21 @@ CREATE TABLE IF NOT EXISTS audit_log (
     created_at  TEXT NOT NULL DEFAULT (datetime('now'))
 );
 CREATE INDEX IF NOT EXISTS audit_log_center_created ON audit_log (center_slug, created_at);
+
+-- Knowledge-maintenance review queue (Track K, docs/KNOWLEDGE_MAINTENANCE.md §3)
+CREATE TABLE IF NOT EXISTS kb_issues (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    center_slug TEXT NOT NULL REFERENCES centers(slug),
+    kind        TEXT NOT NULL,
+    severity    TEXT NOT NULL CHECK (severity IN ('high', 'medium', 'low')),
+    section     TEXT,
+    detail      TEXT NOT NULL,
+    suggestion  TEXT,
+    fingerprint TEXT NOT NULL,              -- stable id of the problem, so re-runs don't duplicate it
+    status      TEXT NOT NULL DEFAULT 'open' CHECK (status IN ('open', 'resolved', 'dismissed')),
+    created_at  TEXT NOT NULL DEFAULT (datetime('now')),
+    updated_at  TEXT NOT NULL DEFAULT (datetime('now')),
+    resolved_by TEXT,                       -- admin display name, or 'kb-maintenance-agent'
+    UNIQUE (center_slug, fingerprint)
+);
+CREATE INDEX IF NOT EXISTS kb_issues_center_status ON kb_issues (center_slug, status);

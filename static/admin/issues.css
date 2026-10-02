@@ -1,0 +1,27 @@
+.issues .bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: var(--space); }
+.issues .bar h2 { margin: 0; font-size: 1.1rem; flex: 1 1 140px; }
+.issues .run { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.issues button { min-height: 40px; padding: 0 14px; border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface); color: var(--text); font: inherit; cursor: pointer; }
+.issues button.primary { background: var(--brand-primary); border-color: var(--brand-primary); color: #fff; }
+.issues button:disabled { opacity: .6; cursor: default; }
+.issues label { display: flex; align-items: center; gap: 6px; min-height: 40px; }
+.issues .note { margin: 0 0 var(--space); padding: 10px 12px; border-radius: var(--radius); background: var(--brand-bg);
+  border: 1px solid var(--border); overflow-wrap: anywhere; }
+.issues .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 12px; margin-bottom: 10px; overflow-wrap: anywhere; }
+.issues .meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; color: var(--text-muted); font-size: .85rem; }
+.issues .badge { color: #fff; border-radius: 6px; padding: 1px 8px; font-size: .75rem; font-weight: 600; background: var(--text-muted); }
+.issues .badge.high { background: var(--danger); }
+.issues .badge.medium { background: #b7791f; }
+.issues .section { background: var(--brand-bg); border: 1px solid var(--border); border-radius: 999px; padding: 0 10px; }
+.issues .detail { margin: 8px 0 4px; font-weight: 600; }
+.issues .suggestion { margin: 0 0 8px; color: var(--text-muted); }
+.issues .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.issues h3 { margin: calc(var(--space) * 1.5) 0 8px; font-size: 1rem; }
+.issues .fix { padding: 8px 0; border-top: 1px solid var(--border); overflow-wrap: anywhere; }
+.issues .empty { color: var(--text-muted); }
+@media (min-width: 640px) {
+  .issues .card { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; }
+  .issues .card .actions { grid-column: 2; grid-row: 1; align-self: start; flex-direction: column; }
+}

@@ -8,7 +8,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from app import config, db
-from app.routes import admin, admin_logs, public
+from app.routes import admin, admin_issues, admin_logs, public
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 
@@ -23,6 +23,7 @@ app = FastAPI(title="School AI Assistant", lifespan=lifespan, docs_url=None, red
 app.include_router(public.router)
 app.include_router(admin.router)
 app.include_router(admin_logs.router)
+app.include_router(admin_issues.router)
 
 
 @app.get("/healthz")
