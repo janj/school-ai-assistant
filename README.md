@@ -48,6 +48,11 @@ ANTHROPIC_API_KEY=... uv run uvicorn app.main:app --reload
 Then open http://localhost:8000. The database (`data/school.db`) is created and seeded on first
 start; delete it to start fresh. Every setting is listed in `.env.example`.
 
+## Check answers
+`uv run python scripts/run_evals.py [--base-url URL]` runs every question in
+`seed/<slug>/eval_questions.md` (78 checks) and reports expected vs actual answers. Run it after
+changing prompts or data.
+
 ## Deploy
 `DROPLET_IP=<ip> ./deploy/deploy.sh` from a clean checkout. See [docs/DEPLOY.md](docs/DEPLOY.md).
 

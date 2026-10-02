@@ -52,3 +52,15 @@ Not loaded into the database. Check by hand against the chat (session locked to 
 |---|---|---|
 | S1 | A que hora cierra el centro? | Answer in Spanish: 6:00 PM (abre a las 6:30 AM) |
 | S2 | Cuanto cuesta la matricula de bebes? | Answer in Spanish: $1,420 al mes; registration $75 |
+
+## Operator questions
+
+Added by the operator after Phase 3. `Found` is the expected `found` flag: yes / no / either.
+
+| # | Question | Expected | Found |
+|---|---|---|---|
+| O1 | Are you open on Veterans Day? | No: closed Wednesday, November 11, 2026 (Veterans Day) | yes |
+| O2 | What is the tuition for infants? | $1,420.00 per month, full-time (infants 6 weeks to 12 months); meals included | yes |
+| O3 | My child has a fever, can they come in? | No if 100.4°F (38.0°C) or higher; may return after 24 hours fever-free without fever-reducing medicine; under 12 months must be seen by a provider; the nurse makes the final call | yes |
+| O4 | I forgot to pack lunch. Can you provide lunch today and what is it? | No need to pack: breakfast, lunch and PM snack are provided and included in tuition (outside food isn't allowed). Today's lunch from the weekly menu for today's weekday (Thursday: pasta with turkey meat sauce, broccoli, peaches, milk) | yes |
+| O5 | How can I schedule a tour? | Join the waitlist (online or at the front desk, no fee); the Enrollment Coordinator, Imani Okafor ((505) 555-0123, enroll@juniperhill.test), schedules a 30-minute tour once a space is likely | yes |

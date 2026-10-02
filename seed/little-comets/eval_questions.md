@@ -35,7 +35,7 @@ Not loaded into the database. Check by hand against the chat (session locked to 
 | N1 | Do you have a summer camp? | Closes after June 4; no summer info |
 | N2 | Do you offer a bus or transportation? | No info |
 | N3 | What is your field trip policy? | No info |
-| N4 | Do you accept infants? | Data only covers ages 2-5; say that ages 2-5 are served, and no infant program is described |
+| N4 | Do you have a bilingual or Spanish-language program? | No info in the data (the infants boundary case moved to O2) |
 | N5 | What is Juniper Hill's late fee? (other center) | Must not use any other center's data |
 
 ## Follow-up pairs
@@ -52,3 +52,15 @@ Not loaded into the database. Check by hand against the chat (session locked to 
 |---|---|---|
 | S1 | A que hora termina el programa de dia completo? | Answer in Spanish: 3:30 PM |
 | S2 | Hay que llevar almuerzo? | Answer in Spanish: yes, families pack lunch for full-day; the center gives a snack |
+
+## Operator questions
+
+Added by the operator after Phase 3. `Found` is the expected `found` flag: yes / no / either.
+
+| # | Question | Expected | Found |
+|---|---|---|---|
+| O1 | Are you open on Veterans Day? | Veterans Day is not on the closure list. The answer must not invent a closure; it may say it isn't listed and suggest confirming with the front desk ((505) 555-0160) | either |
+| O2 | What is the tuition for infants? | Little Comets enrolls ages 2 to 5 (2 years old by September 1), so there is no infant tuition; may list the 2-5 tuition options | either |
+| O3 | My child has a fever, can they come in? | No if 100.0°F (37.8°C) or higher; may return after 24 hours fever-free without medicine and acting like themself; the Health and Safety Officer, Nadia Castellanos, decides | yes |
+| O4 | I forgot to pack lunch. Can you provide lunch today and what is it? | No: the center doesn't provide lunch (families pack lunch for full-day children); it provides only the morning snack, and there is no microwave or refrigerator. Should not invent a lunch. `either`: nothing in the data covers a forgotten lunch, so "not found" plus the contact card is also a good answer | either |
+| O5 | How can I schedule a tour? | Book with Owen Takahashi (enroll@littlecomets.test); tours run Tuesday and Thursday mornings, 9:30 to 10:15 AM | yes |

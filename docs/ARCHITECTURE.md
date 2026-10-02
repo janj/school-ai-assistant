@@ -83,8 +83,11 @@ both for first start and for an admin's "reset to original data".
   cache reads/writes).
 - The admin Logs tab shows questions, answers, sources, tokens and latency per center, and
   the unanswered ones are the to-do list for improving the data.
-- `seed/<slug>/eval_questions.md` is the manual regression list: 21 answerable questions,
-  5 unanswerable, 3 follow-ups and 2 in Spanish per center.
+- **Regression checks:** `seed/<slug>/eval_questions.md` lists, per center, 21 answerable questions,
+  5 unanswerable, 3 follow-up pairs, 2 in Spanish and 5 operator questions (78 checks in all).
+  `scripts/run_evals.py` runs them against any server. It checks the `found` flag, the contact card
+  and the answer language automatically, prints expected vs actual answers for review, and can
+  compare two runs (`--compare`).
 
 ## Known limits (POC)
 - No real auth: anyone can choose Admin. This was a deliberate demo choice; reset to seed limits
