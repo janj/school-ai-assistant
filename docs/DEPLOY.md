@@ -88,7 +88,7 @@ The first certificate takes a few seconds; the build takes a few minutes on this
 | App logs | `ssh root@$DROPLET_IP 'cd /opt/school-ai && docker compose -f deploy/docker-compose.yml logs -f app'` |
 | Caddy logs | same, with `logs -f caddy` |
 | Status | `... docker compose -f deploy/docker-compose.yml ps` |
-| Change a limit | edit `/opt/school-ai/.env` on the server (see `.env.example`), then `docker compose --env-file .env -f deploy/docker-compose.yml up -d` |
+| Change a limit | edit `/opt/school-ai/.env` on the server (see `.env.example`), then `ssh root@$DROPLET_IP 'cd /opt/school-ai && docker compose -f deploy/docker-compose.yml up -d'` |
 
 ### Back up the SQLite volume
 The data lives in the `school_data` volume (compose project `deploy`, so `deploy_school_data`).

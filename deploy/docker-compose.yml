@@ -1,5 +1,5 @@
 # Run from /opt/school-ai:
-#   docker compose --env-file .env -f deploy/docker-compose.yml up -d --build
+#   docker compose -f deploy/docker-compose.yml up -d --build   (deploy.sh links deploy/.env -> ../.env)
 services:
   app:
     build:

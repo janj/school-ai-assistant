@@ -57,7 +57,9 @@ else
 fi
 
 echo "==> Building and starting containers"
-ssh_run "cd $REMOTE_DIR && docker compose --env-file .env -f deploy/docker-compose.yml up -d --build"
+# Compose reads .env from the compose file's directory; the link lets plain
+# `docker compose -f deploy/docker-compose.yml logs|ps|...` work on the server too.
+ssh_run "cd $REMOTE_DIR && ln -sfn ../.env deploy/.env && docker compose -f deploy/docker-compose.yml up -d --build"
 
 echo "==> Waiting for https://$DOMAIN/healthz (up to 120s)"
 deadline=$((SECONDS + 120))

@@ -22,8 +22,9 @@ Runs the app on its own $6 DigitalOcean droplet behind Caddy with automatic HTTP
   into a mode-600 file on the server; `--rotate-key` rewrites only that line.
 - **`--forwarded-allow-ips "*"`**: safe because the app port is not published; only Caddy can
   reach it on the compose network. Needed so the limiter sees the real client IP.
-- **`DOMAIN` is a compose variable** (not just app env), so compose is run with
-  `--env-file .env` from `/opt/school-ai`.
+- **`DOMAIN` is a compose variable** (not just app env). Compose reads `.env` from the compose
+  file's directory, so `deploy.sh` links `deploy/.env -> ../.env` on the server; plain
+  `docker compose -f deploy/docker-compose.yml ...` commands then work (fixed in Phase 2).
 - **Permissions-Policy allows `microphone=(self)`** so the Phase 3 voice track works.
 - **No HTTP/3**: the firewall opens 443/TCP only.
 - `.dockerignore` excludes `docs/`, `.env*`, `claude-key`, `data/`, `.git`.
