@@ -225,7 +225,7 @@ function showChat(s) {
   const composer = el("div", { class: "composer" },
     el("div", { class: "composer-row" },
       input,
-      // HOOK(voice): mic button mounts here
+      ((slot) => (import("/static/voice.js").then((m) => m.mountVoice(slot, { input, send: ask, getLang: () => navigator.language })).catch(() => {}), slot))(el("div", { class: "voice-slot" })),
       send),
     counter);
   app.replaceChildren(el("div", { class: "chat" }, header, messages, composer));
