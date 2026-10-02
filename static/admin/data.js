@@ -36,7 +36,7 @@ async function api(method, path, body) {
   return data;
 }
 
-const dollars = (cents) => (cents == null ? "" : "$" + (cents / 100).toFixed(2));
+const dollars = (cents) => (cents == null ? "" : (cents / 100).toLocaleString("en-US", { style: "currency", currency: "USD" }));
 
 function display(col, value) {
   if (value == null || value === "") return "";
@@ -124,7 +124,9 @@ export async function mountData(el, session) {
     main.replaceChildren(
       h("div.dx-head", null, h("h2", null, meta.label), add),
       msg,
-      rows.length ? h("div", null, table, cards) : h("p.dx-muted", null, "Nothing here yet."),
+      // A single record (Center info) reads better as label/value cards at every width.
+      !rows.length ? h("p.dx-muted", null, "Nothing here yet.")
+        : meta.single_row ? h("div.dx-single", null, cards) : h("div", null, table, cards),
     );
   }
 

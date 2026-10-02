@@ -19,7 +19,7 @@
 .dx-main { min-width: 0; }
 @media (min-width: 760px) {
   .dx-layout { display: grid; grid-template-columns: 200px 1fr; gap: 24px; align-items: start; }
-  .dx-picker select { display: none; }
+  .dx-picker { display: none; }  /* its empty wrapper would otherwise take the 200px grid column */
   .dx-side { display: flex; flex-direction: column; gap: 2px; }
   .dx-side button { text-align: left; border: 0; background: none; padding: 10px 12px; border-radius: 8px;
                     cursor: pointer; }
@@ -34,7 +34,7 @@
 .dx-table { display: none; width: 100%; border-collapse: collapse; background: var(--surface);
             border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
 .dx-table th, .dx-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); text-align: left;
-                             vertical-align: top; overflow-wrap: anywhere; }
+                             vertical-align: top; overflow-wrap: break-word; min-width: 6em; }
 .dx-table th { font-size: .8rem; color: var(--text-muted); font-weight: 600; }
 .dx-table td.act { white-space: nowrap; width: 1%; }
 .dx-cards { display: flex; flex-direction: column; gap: 10px; }
@@ -48,6 +48,8 @@
 @media (min-width: 760px) {
   .dx-table { display: table; }
   .dx-cards { display: none; }
+  .dx-single .dx-cards { display: flex; max-width: 640px; }
+  .dx-single .dx-card dl { grid-template-columns: 120px 1fr; }
 }
 
 /* form */
