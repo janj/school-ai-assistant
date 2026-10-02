@@ -39,3 +39,11 @@ Admins see only their own center's log. No IP is ever stored.
 
 Call `log_turn` from a script, then `sqlite3 data/school.db "select question, answer from qa_log"`,
 or sign in as admin and open the Logs tab. A parent session gets 403 on both routes.
+
+## Phase 2 changes
+- **Public contact details stay readable.** The center's own directory phones/emails and main
+  phone/email are swapped for `[[KEEPn]]` tokens before both passes and restored afterwards, so
+  answers that quote them can still be checked. If Haiku drops a token, the regex-only text is stored.
+- **Haiku is a filter, not an assistant.** The text is wrapped in `<text>` tags and the system
+  prompt says it is data. A result much longer than the input (an "answer" instead of a
+  redaction) is rejected and the regex-only text is stored.

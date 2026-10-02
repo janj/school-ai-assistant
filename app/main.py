@@ -1,5 +1,6 @@
 """FastAPI entrypoint: `uv run uvicorn app.main:app --reload`."""
 
+import logging
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -8,6 +9,8 @@ from fastapi.staticfiles import StaticFiles
 
 from app import config, db
 from app.routes import admin, admin_logs, public
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 
 
 @asynccontextmanager

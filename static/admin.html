@@ -42,6 +42,9 @@
     const session = res.ok ? await res.json() : null;
     if (!session || session.role !== "admin") { location.href = "/"; throw new Error("not an admin session"); }
 
+    const theme = session.center.theme || {};
+    if (theme.primary) document.documentElement.style.setProperty("--brand-primary", theme.primary);
+    if (theme.accent) document.documentElement.style.setProperty("--brand-accent", theme.accent);
     document.getElementById("center-name").textContent = session.center.name + " · Admin";
     document.getElementById("who").textContent = "Signed in as " + session.display_name;
     document.getElementById("reset-session").onclick = async () => {

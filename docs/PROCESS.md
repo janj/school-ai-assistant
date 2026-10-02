@@ -161,17 +161,17 @@ names and the admin tab shell. **Exit:** the app runs locally, you can pick a se
 
 | Track | Scope | Depends on | Status |
 |---|---|---|---|
-| **A · Seed data** | Two made-up centers covering all 11 topics. They must differ clearly (hours, fees, policies). Include `eval_questions.md` per center: ~20 questions with expected answers, plus ~5 that the data can't answer | P0 | active |
-| **B · Chat backend** | `kb.py` rendering with section IDs; `chat.py` with Sonnet, two cache breakpoints (rules, KB), structured output, source checking, server-added contact on `found=false`, answer in the question's language; `limits.py` (defaults: 20 req / 5 min, 60k tokens / 10 min, 300k tokens / day per IP; settable by env) | P0 (can use A's seed when ready) | active |
-| **C · Frontend** | Picker (role + center + admin name), chat UI (message bubbles, sources shown as chips, not-found contact card, error states per §4.4), reset control on every view, mobile-first layout | P0 | active |
-| **D · Admin data editor** | Generic CRUD driven by `registry.py` (tables and markdown policies), `audit_log` written on every change, History tab, "reset center to seed" with a confirm step | P0 | active |
-| **E · Q/A logging** | `log_turn`, PII scrub (regex for phones/emails, then Haiku for people's names; staff names from the directory are kept), Logs tab filtered by center with an "unanswered only" filter | P0 | active |
-| **F · Deploy** | Dockerfile, compose (app + Caddy, SQLite on a volume), Caddyfile, `deploy.sh` run by hand from this machine, `docs/DEPLOY.md` covering droplet setup from scratch | P0 | active |
+| **A · Seed data** | Two made-up centers covering all 11 topics. They must differ clearly (hours, fees, policies). Include `eval_questions.md` per center: ~20 questions with expected answers, plus ~5 that the data can't answer | P0 | merged |
+| **B · Chat backend** | `kb.py` rendering with section IDs; `chat.py` with Sonnet, two cache breakpoints (rules, KB), structured output, source checking, server-added contact on `found=false`, answer in the question's language; `limits.py` (defaults: 20 req / 5 min, 60k tokens / 10 min, 300k tokens / day per IP; settable by env) | P0 (can use A's seed when ready) | merged |
+| **C · Frontend** | Picker (role + center + admin name), chat UI (message bubbles, sources shown as chips, not-found contact card, error states per §4.4), reset control on every view, mobile-first layout | P0 | merged |
+| **D · Admin data editor** | Generic CRUD driven by `registry.py` (tables and markdown policies), `audit_log` written on every change, History tab, "reset center to seed" with a confirm step | P0 | merged |
+| **E · Q/A logging** | `log_turn`, PII scrub (regex for phones/emails, then Haiku for people's names; staff names from the directory are kept), Logs tab filtered by center with an "unanswered only" filter | P0 | merged |
+| **F · Deploy** | Dockerfile, compose (app + Caddy, SQLite on a volume), Caddyfile, `deploy.sh` run by hand from this machine, `docs/DEPLOY.md` covering droplet setup from scratch | P0 | merged |
 
 Track briefs: `docs/tracks/` (start with `_common.md`). Each track's deliverable: its branch, a feature doc at `docs/features/<track>.md`, and a summary
 (what changed, decisions made, anything left open). **Tracks touch only files they own.**
 
-### Phase 2 — Integrate and ship (operator + Opus)  `todo`
+### Phase 2 — Integrate and ship (operator + Opus)  `merged`
 Merge in the order A → B → E → C → D → F. Run every `eval_questions.md` question by hand, fix
 gaps, write the 1-page `README.md` and `docs/ARCHITECTURE.md`, deploy and do a live check.
 
@@ -197,4 +197,5 @@ G and J both touch `chat.js`. J only adds a hook that Phase 0 or G defines, so G
 
 ## 7. Open items
 
-- [ ] Create the droplet (steps in `docs/DEPLOY.md`, Track F). Its IP sets the sslip.io hostname.
+- [x] Droplet created and bootstrapped: 162.243.171.212 → https://162-243-171-212.sslip.io
+- [ ] Confirm the DO Cloud Firewall allows 80/443 (verified on first deploy).

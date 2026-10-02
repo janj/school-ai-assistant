@@ -30,9 +30,13 @@
   calendar day). Tokens recorded = input + output + cache-write + 10% of cache-read.
   State is in memory only, pruned on each check; an IP with no recent activity is dropped.
 - `qa_log` receives `response.model`, which can differ from `ANSWER_MODEL` if the fallback fired.
+- **Partial answers (Phase 2).** `found=true` only when the knowledge base directly answers the
+  question. If the model can only offer related facts, `found` stays false (so the contact card
+  shows) but its `sources` are kept, so the related facts are still cited.
 - `conversation_id` is echoed back and otherwise ignored.
 
 ## Observed
-With two test centers (~1.7k-token prompt), repeat requests showed `cache_read_input_tokens`
-of about 1,240 (RULES + KB) with ~35 uncached input tokens. Limits were tunable via
+With the real seed data (Phase 2, all 62 eval questions), the cached prefix is ~8,200 tokens for
+Juniper Hill and ~7,200 for Little Comets; repeat questions send ~35 uncached input tokens and
+read the rest from cache. Limits were tunable via
 `RATE_LIMIT_REQUESTS`, `TOKEN_BUDGET_SHORT`, `TOKEN_BUDGET_DAILY`.
