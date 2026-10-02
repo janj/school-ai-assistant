@@ -12,6 +12,7 @@ RUN uv sync --frozen --no-dev --no-install-project
 COPY app/ app/
 COPY static/ static/
 COPY seed/ seed/
+COPY scripts/ scripts/
 
 RUN useradd --system --uid 1000 --home /app app \
     && mkdir -p /app/data && chown app:app /app/data
