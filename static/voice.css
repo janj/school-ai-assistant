@@ -1,0 +1,17 @@
+.voice-slot { display: contents; }
+.voice-controls { display: flex; gap: 6px; align-items: flex-end; flex: none; }
+.voice-btn { width: 44px; min-width: 44px; height: 44px; padding: 0; display: inline-flex; align-items: center; justify-content: center; }
+.voice-btn[aria-pressed="true"] { background: var(--brand-primary); color: #fff; border-color: var(--brand-primary); }
+.voice-mic.listening { animation: voice-pulse 1.2s ease-out infinite; }
+@keyframes voice-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--brand-primary) 55%, transparent); }
+  100% { box-shadow: 0 0 0 12px transparent; }
+}
+@media (prefers-reduced-motion: reduce) { .voice-mic.listening { animation: none; } }
+.voice-status { font-size: .8rem; color: var(--text-muted); }
+.voice-status:empty { display: none; }
+@media (max-width: 400px) {
+  .voice-btn { width: 40px; min-width: 40px; height: 40px; }
+  .voice-controls { gap: 4px; }
+  .composer-row { gap: 6px; }
+}
