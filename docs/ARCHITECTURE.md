@@ -78,4 +78,6 @@ both for first start and for an admin's "reset to original data".
 - No conversation memory yet: each question stands alone (Phase 3, Track G).
 - The same fact can appear in two places (e.g. the registration fee in `fees` and in the
   enrollment policy). If an admin edits only one, the assistant reports the conflict instead of
-  picking a value.
+  picking a value. **Phase 3.0** fixes this with placeholders and a `facts` table (each fact has
+  one home), and **Track K** adds a maintenance agent to keep it that way. See
+  [KNOWLEDGE_MAINTENANCE.md](KNOWLEDGE_MAINTENANCE.md).

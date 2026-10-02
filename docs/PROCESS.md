@@ -175,6 +175,76 @@ Track briefs: `docs/tracks/` (start with `_common.md`). Each track's deliverable
 Merge in the order A → B → E → C → D → F. Run every `eval_questions.md` question by hand, fix
 gaps, write the 1-page `README.md` and `docs/ARCHITECTURE.md`, deploy and do a live check.
 
+### Phase 3.0 — Single source of truth for facts (operator + Opus, serial)  `todo`
+
+**Problem (found in Phase 2):** policy prose repeats facts that also live in tables: about 18–22
+per center (fees, contact phones/emails, times). When an admin edits the fees table, the copy in
+the policy goes stale, and the assistant reports a conflict instead of answering. See
+[KNOWLEDGE_MAINTENANCE.md](KNOWLEDGE_MAINTENANCE.md).
+
+**Decision:** every fact has exactly one home.
+- Prose that needs a value uses a **placeholder** (option 4).
+- Prose that doesn't need it **points to the section** (option 1).
+
+This changes shared contracts (schema, seed format, `kb.py`), so it is done serially before the
+parallel Phase 3 tracks start, the same way as Phase 0.
+
+**Stable-key assumption (documented POC assumption):**
+- Keyed rows have a `key` that is unique per center, matches `^[a-z0-9_]+$`, is set at creation,
+  and **cannot be changed afterwards**.
+- The POC enforces this cheaply:
+  - a `UNIQUE(center_slug, key)` constraint;
+  - the API rejects key changes;
+  - deleting a row that a policy or FAQ uses is blocked with 409.
+- Not covered: deleting a row and re-creating it under a different key.
+- Production would add key pickers, shared key vocabularies across centers, and migration
+  tooling for renames.
+
+**Scope**
+1. **Schema**
+   - Add `key` to `fees`, `contacts`, `hours`.
+   - New table `facts(id, center_slug, key, label, value, notes)` for reused facts that have no
+     table home (e.g. the fever threshold or the late-pickup grace period).
+   - All four tables get `UNIQUE(center_slug, key)`.
+2. **Placeholder grammar.** The form is `{{type:key}}` or `{{type:key.field}}`, filled in by
+   `kb.py` when it builds the knowledge base:
+
+   | Type | Default | Fields |
+   |---|---|---|
+   | `fee` | amount (`$75.00`) | `.name` `.period` |
+   | `contact` | name | `.phone` `.email` `.position` |
+   | `hours` | `6:30 AM - 6:00 PM` | `.open` `.close` |
+   | `fact` | value | `.label` |
+   | `center` | — | `.name` `.main_phone` `.main_email` `.address` `.website` |
+
+   - It applies to `policies.body_md` and `faq.answer`.
+   - A placeholder with no matching row renders as `(not listed)` and logs a warning, so the
+     model never sees a gap it might fill by guessing.
+   - The knowledge base also gets a `facts` section, so facts can be asked about directly.
+3. **Admin editor**
+   - `key` is a required field on create and read-only afterwards.
+   - The `facts` table is editable.
+   - Saving a policy or FAQ with an unknown placeholder returns 400 and lists the bad ones.
+   - Deleting a row that is in use returns 409 and names the policies that use it.
+   - A **filled-in preview** (`POST /api/admin/preview`), and a placeholder picker listing the
+     available keys.
+4. **Seed rewrite.**
+   - Add keys to every keyed row, and add `facts.json`.
+   - Replace each duplicated literal in the policies with a placeholder or a "see Fees / see
+     Directory" pointer.
+5. **`scripts/kb_lint.py`.** A predictable, non-AI report of literal values in policies and
+   FAQs that match a keyed value, plus broken placeholders. It is the base for Track K.
+6. **Docs.** Update `CONTRACTS.md` (§3 admin API, §4 sections, §7 seed format, the key
+   assumption), `ARCHITECTURE.md` and `docs/features/`.
+
+**Exit criteria**
+- `kb_lint.py` reports **0** duplicated literals and **0** broken placeholders for both centers.
+- All 62 eval questions still pass.
+- Editing `fee:registration` changes the enrollment policy's filled-in text and the next chat
+  answer, with no conflict.
+- Deleting a fee that is in use returns 409.
+- Changing a key returns 400.
+
 ### Phase 3 — Nice-to-haves (parallel Sonnet tracks)
 
 | Track | Scope | Owns | Status |
@@ -184,7 +254,12 @@ gaps, write the 1-page `README.md` and `docs/ARCHITECTURE.md`, deploy and do a l
 | **I · Center themes** | `theme_json` → CSS variables, logo/wordmark, favicon per center | `base.css`, a theme loader | todo |
 | **J · Voice** | Web Speech API mic input + optional read-aloud, with feature detection | `static/voice.js` + one hook in `chat.js` | todo |
 
-G and J both touch `chat.js`. J only adds a hook that Phase 0 or G defines, so G merges first.
+| **K · Knowledge maintenance agent** | Scheduled and on-demand agent. It fixes clear-cut issues itself and files everything else in a "Data issues" review queue. Spec: [KNOWLEDGE_MAINTENANCE.md](KNOWLEDGE_MAINTENANCE.md) §3 | `app/maintenance.py`, `scripts/maintain_kb.py`, `kb_issues` table, `static/admin/issues.js`, a cron entry in `deploy/` | todo |
+
+- All Phase 3 tracks start after Phase 3.0 merges.
+- G and J both touch `chat.js`. J only adds a hook that Phase 0 or G defines, so G merges first.
+- H and K both add admin review queues. K's "Data issues" tab follows H's pattern, so H merges
+  first. K reuses `scripts/kb_lint.py` from 3.0.
 
 ## 6. Subagent rules (included in every brief)
 

@@ -47,4 +47,5 @@ start; delete it to start fresh. Every setting is listed in `.env.example`.
 
 ## Docs
 [Architecture](docs/ARCHITECTURE.md) · [Contracts](docs/CONTRACTS.md) ·
+[Knowledge maintenance](docs/KNOWLEDGE_MAINTENANCE.md) ·
 [Process and phases](docs/PROCESS.md) · feature docs in [docs/features/](docs/features/)
