@@ -11,6 +11,8 @@
     "accent": "#b9822f",
     "background": "#f6f4ec",
     "font": "Georgia, 'Times New Roman', serif",
-    "logo_text": "JH"
+    "logo_text": "JH",
+    "surface_tint": "#fcfbf6",
+    "pattern": "leaves"
   }
 }

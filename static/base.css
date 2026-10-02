@@ -8,9 +8,12 @@
   --brand-accent: #f2b134;
   --brand-bg: #f8f8f6;
   --brand-font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --on-primary: #fff;            /* text on --brand-primary; theme.js picks white or near-black */
+  --brand-pattern: none;         /* optional background motif (data URL), light mode only */
 
   /* Neutrals */
   --surface: #ffffff;
+  --surface-tint: var(--surface); /* subtle card tint from center.theme.surface_tint */
   --text: #1d1d1f;
   --text-muted: #5f6368;
   --border: #dedede;
@@ -36,7 +39,7 @@
 body {
   margin: 0;
   font-family: var(--brand-font);
-  background: var(--brand-bg);
+  background: var(--brand-bg) var(--brand-pattern);
   color: var(--text);
   line-height: 1.45;
 }

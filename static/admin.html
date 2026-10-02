@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="/static/base.css">
   <style>
     header { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between;
-             padding: 12px var(--space); background: var(--brand-primary); color: #fff; }
-    header a, header button { color: #fff; }
+             padding: 12px var(--space); background: var(--brand-primary); color: var(--on-primary); }
+    header a, header button { color: var(--on-primary); }
     nav { display: flex; gap: 4px; padding: 8px var(--space); border-bottom: 1px solid var(--border);
           overflow-x: auto; background: var(--surface); }
     nav button { border: 0; background: none; padding: 8px 12px; border-radius: 8px; font: inherit;
@@ -24,9 +24,9 @@
   <header>
     <strong id="center-name">Admin</strong>
     <span>
-      <span id="who" class="muted" style="color:#fff;opacity:.85"></span>
+      <span id="who" class="muted" style="color:var(--on-primary);opacity:.85"></span>
       <a href="/">Chat</a>
-      <button id="reset-session" type="button" style="background:none;border:1px solid #fff;border-radius:8px;padding:4px 10px;cursor:pointer">Start over</button>
+      <button id="reset-session" type="button" style="background:none;border:1px solid currentColor;border-radius:8px;padding:4px 10px;cursor:pointer">Start over</button>
     </span>
   </header>
   <nav role="tablist">
@@ -37,14 +37,13 @@
   <main id="tab-panel"><p class="muted">Loading…</p></main>
 
   <script type="module">
+    import { applyTheme } from "/static/theme.js";
     const panel = document.getElementById("tab-panel");
     const res = await fetch("/api/session");
     const session = res.ok ? await res.json() : null;
     if (!session || session.role !== "admin") { location.href = "/"; throw new Error("not an admin session"); }
 
-    const theme = session.center.theme || {};
-    if (theme.primary) document.documentElement.style.setProperty("--brand-primary", theme.primary);
-    if (theme.accent) document.documentElement.style.setProperty("--brand-accent", theme.accent);
+    applyTheme(session.center.theme);
     document.getElementById("center-name").textContent = session.center.name + " · Admin";
     document.getElementById("who").textContent = "Signed in as " + session.display_name;
     document.getElementById("reset-session").onclick = async () => {

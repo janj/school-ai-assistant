@@ -11,6 +11,8 @@
     "accent": "#ffc933",
     "background": "#f3f6fc",
     "font": "'Trebuchet MS', 'Helvetica Neue', sans-serif",
-    "logo_text": "LC"
+    "logo_text": "LC",
+    "surface_tint": "#fafcff",
+    "pattern": "stars"
   }
 }

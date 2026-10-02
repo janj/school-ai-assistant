@@ -1,5 +1,4 @@
-/* Picker + chat. Colors come from the tokens in base.css; --on-primary is set by chat.js for contrast. */
-:root { --on-primary: #fff; }
+/* Picker + chat. Colors come from the tokens in base.css; theme.js sets them per center. */
 html, body { height: 100%; }
 body { overflow-x: hidden; }
 [hidden] { display: none !important; }
@@ -15,7 +14,8 @@ body { overflow-x: hidden; }
 .muted { color: var(--text-muted); }
 .cards { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 .card-opt { text-align: left; padding: var(--space); border-radius: var(--radius); border: 2px solid var(--border);
-  border-left: 8px solid var(--tint, var(--brand-primary)); background: var(--surface); min-height: 72px; }
+  border-left: 8px solid var(--tint, var(--brand-primary)); min-height: 72px;
+  background: color-mix(in srgb, var(--tint, transparent) 7%, var(--surface-tint)); }
 .card-opt[aria-checked="true"] { border-color: var(--tint, var(--brand-primary)); box-shadow: 0 0 0 2px var(--tint, var(--brand-primary)); }
 .card-opt strong { display: block; }
 .roles { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -28,7 +28,7 @@ body { overflow-x: hidden; }
 .demo-note { margin-top: 16px; font-size: .9rem; color: var(--text-muted); }
 
 /* Chat shell */
-.chat { display: flex; flex-direction: column; height: 100dvh; max-width: 720px; margin: 0 auto; background: var(--brand-bg); }
+.chat { display: flex; flex-direction: column; height: 100dvh; max-width: 720px; margin: 0 auto; }
 .chat-header { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 10px var(--space);
   background: var(--brand-primary); color: var(--on-primary); }
 .chat-header .logo { background: var(--on-primary); color: var(--brand-primary); font-weight: 700; font-size: .8rem;
@@ -45,7 +45,7 @@ body { overflow-x: hidden; }
   background: var(--surface); color: var(--text); }
 .msg { max-width: 88%; padding: 10px 14px; border-radius: var(--radius); overflow-wrap: anywhere; }
 .msg.user { align-self: flex-end; background: var(--brand-primary); color: var(--on-primary); border-bottom-right-radius: 4px; white-space: pre-wrap; }
-.msg.bot { align-self: flex-start; background: var(--surface); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
+.msg.bot { align-self: flex-start; background: var(--surface-tint); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
 .msg.bot p { margin: 0 0 .5em; }
 .msg.bot p:last-child { margin-bottom: 0; }
 .msg.bot ul { margin: .25em 0 .5em; padding-left: 1.2em; }
@@ -63,7 +63,7 @@ body { overflow-x: hidden; }
 @media (prefers-reduced-motion: reduce) { .typing span { animation: none; } }
 
 /* Input bar */
-.composer { padding: 8px var(--space) calc(8px + env(safe-area-inset-bottom)); background: var(--surface); border-top: 1px solid var(--border); }
+.composer { padding: 8px var(--space) calc(8px + env(safe-area-inset-bottom)); background: var(--surface-tint); border-top: 1px solid var(--border); }
 .composer-row { display: flex; gap: 8px; align-items: flex-end; }
 .composer textarea { flex: 1; min-width: 0; resize: none; min-height: 44px; max-height: 6.6em; padding: 10px 12px; line-height: 1.4;
   border-radius: var(--radius); border: 1px solid var(--border); background: var(--brand-bg); }

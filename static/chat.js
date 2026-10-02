@@ -68,32 +68,9 @@ function renderMarkdown(text) {
   return out.join("");
 }
 
-// ---- Theme ----
-function luminance(hex) {
-  const m = /^#?([0-9a-f]{6})$/i.exec(hex || "");
-  if (!m) return null;
-  const c = [0, 2, 4].map((i) => {
-    const v = parseInt(m[1].slice(i, i + 2), 16) / 255;
-    return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
-  });
-  return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
-}
-function applyTheme(theme) {
-  const root = document.documentElement.style;
-  if (!theme) {
-    ["--brand-primary", "--brand-accent", "--brand-bg", "--on-primary"].forEach((p) => root.removeProperty(p));
-    return;
-  }
-  if (theme.primary) {
-    root.setProperty("--brand-primary", theme.primary);
-    const l = luminance(theme.primary);
-    root.setProperty("--on-primary", l !== null && l > 0.4 ? "#111" : "#fff");
-  }
-  if (theme.accent) root.setProperty("--brand-accent", theme.accent);
-  // Keep the dark-mode background from base.css; a light center background would break contrast.
-  const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  if (theme.background && !dark) root.setProperty("--brand-bg", theme.background);
-}
+// ---- Theme ---- (logic lives in theme.js)
+import { applyTheme as applyThemeShared } from "/static/theme.js";
+function applyTheme(theme) { applyThemeShared(theme); }
 
 // ---- API ----
 async function api(path, opts = {}) {
