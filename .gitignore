@@ -1,0 +1,22 @@
+# Secrets -- never commit
+claude-key
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Local data
+data/*.db
+data/*.db-*
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Claude Code worktrees
+.claude/worktrees/
